@@ -25,3 +25,4 @@ tqdm
 typing-inspection
 typing_extensions
 email-validator
+google-genai

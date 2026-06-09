@@ -25,6 +25,15 @@ app.include_router(failures.router, prefix="/api/failures", tags=["failures"])
 app.include_router(submissions.router, prefix="/api/submissions", tags=["submissions"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
 
+@app.get("/api/seed")
+def seed_database():
+    try:
+        from seed import seed_data
+        seed_data()
+        return {"message": "Database seeded successfully"}
+    except Exception as e:
+        return {"error": str(e)}
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Failure Archive API", "status": "online"}
