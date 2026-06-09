@@ -1,36 +1,249 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Failure Archive
 
-## Getting Started
+## Learn From Failures Before Making Them
 
-First, run the development server:
+Failure Archive is an AI-powered platform designed to help individuals, entrepreneurs, students, researchers, and organizations learn from real-world failures. Instead of focusing only on success stories, the platform analyzes failed startups, products, businesses, technologies, policies, and careers to uncover the reasons behind their failure and provide actionable insights.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The goal is to create a centralized knowledge base where users can understand why something failed, identify warning signs, discover similar cases, and learn how similar failures can be avoided in the future.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Problem Statement
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Thousands of platforms document success stories, but very few systematically analyze failures.
 
-## Learn More
+As a result:
 
-To learn more about Next.js, take a look at the following resources:
+* People repeat the same mistakes.
+* Entrepreneurs launch products without learning from previous failures.
+* Students and professionals struggle to identify the root causes of their setbacks.
+* Organizations lose valuable lessons from failed projects.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Failure Archive addresses this problem by creating a searchable database of failures combined with AI-driven analysis and recommendations.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Failure Database
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Explore documented failures across multiple domains:
+
+* Startups
+* Products
+* Businesses
+* Technologies
+* Policies
+* Careers
+* Investments
+
+### AI Failure Analyzer
+
+Users can submit descriptions of failed projects, businesses, or personal experiences and receive:
+
+* Root cause analysis
+* Risk assessment
+* Key failure factors
+* Improvement suggestions
+
+### Similar Failure Detection
+
+The platform identifies failures with similar characteristics and presents patterns and lessons learned.
+
+### Lessons Learned Repository
+
+Every failure includes:
+
+* Root causes
+* Warning signs
+* Timeline of events
+* Lessons learned
+* Recommendations
+
+### Community Contributions
+
+Users can contribute failure stories and insights to expand the archive.
+
+### Analytics Dashboard
+
+Visualize:
+
+* Most common failure reasons
+* Industry-wise failure trends
+* Failure category statistics
+* User submissions
+
+---
+
+## System Architecture
+
+Frontend (Next.js)
+↓
+Backend API (FastAPI)
+↓
+PostgreSQL Database
+↓
+OpenAI API
+↓
+Analytics & Reporting
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* Next.js
+* TypeScript
+* Tailwind CSS
+* ShadCN UI
+* Recharts
+
+### Backend
+
+* FastAPI
+* SQLAlchemy
+* JWT Authentication
+
+### Database
+
+* PostgreSQL
+
+### AI Integration
+
+* OpenAI API
+
+### Deployment
+
+* Vercel (Frontend)
+* Railway / Render (Backend)
+* Supabase PostgreSQL
+
+---
+
+## Core Modules
+
+### Authentication Module
+
+* User Registration
+* Login
+* JWT Authentication
+* Role-Based Access Control
+
+### Failure Management Module
+
+* Add Failure
+* Edit Failure
+* Delete Failure
+* View Failure Details
+
+### AI Analysis Module
+
+* Root Cause Detection
+* Failure Categorization
+* Recommendation Generation
+
+### Search & Filter Module
+
+* Search by Title
+* Search by Category
+* Search by Industry
+* Search by Keywords
+
+### Dashboard Module
+
+* Statistics
+* Charts
+* Reports
+
+---
+
+## Database Schema
+
+### Users
+
+| Field    | Type    |
+| -------- | ------- |
+| id       | Integer |
+| name     | String  |
+| email    | String  |
+| password | String  |
+| role     | String  |
+
+### Failures
+
+| Field          | Type    |
+| -------------- | ------- |
+| id             | Integer |
+| title          | String  |
+| category       | String  |
+| description    | Text    |
+| industry       | String  |
+| year           | Integer |
+| failure_reason | Text    |
+| lessons        | Text    |
+
+### AI Reports
+
+| Field      | Type    |
+| ---------- | ------- |
+| id         | Integer |
+| failure_id | Integer |
+| analysis   | Text    |
+| risk_score | Float   |
+
+### User Submissions
+
+| Field       | Type    |
+| ----------- | ------- |
+| id          | Integer |
+| user_id     | Integer |
+| title       | String  |
+| description | Text    |
+| status      | String  |
+
+---
+
+## Future Enhancements
+
+* AI Failure Prediction Engine
+* Failure Similarity Graphs
+* Startup Risk Calculator
+* Business Plan Analyzer
+* Career Failure Assessment
+* Recommendation Engine
+* Public API Access
+
+---
+
+## Project Goals
+
+* Create awareness about learning from failures.
+* Help users make informed decisions.
+* Build a structured repository of failure knowledge.
+* Encourage data-driven problem solving.
+* Promote continuous learning and improvement.
+
+---
+
+## Expected Outcomes
+
+Users will be able to:
+
+* Analyze real-world failures.
+* Understand root causes.
+* Learn valuable lessons.
+* Avoid repeating common mistakes.
+* Improve decision-making skills.
+
+---
+
+## Contributors
+
+Project developed as an academic and portfolio project focused on applying Artificial Intelligence, Full-Stack Development, Data Analysis, and Knowledge Management concepts.
+
+---
+
+## License
+
+This project is developed for educational and research purposes.
