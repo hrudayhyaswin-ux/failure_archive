@@ -50,23 +50,23 @@
 }
 
 :root {
-  --background: oklch(0.06 0.02 270);
-  --foreground: oklch(0.98 0.01 270);
-  --card: oklch(0.1 0.03 270);
-  --card-foreground: oklch(0.98 0.01 270);
-  --popover: oklch(0.08 0.03 270);
-  --popover-foreground: oklch(0.98 0.01 270);
+  --background: oklch(0.12 0.03 275);
+  --foreground: oklch(0.98 0.01 275);
+  --card: oklch(0.16 0.04 275);
+  --card-foreground: oklch(0.98 0.01 275);
+  --popover: oklch(0.14 0.04 275);
+  --popover-foreground: oklch(0.98 0.01 275);
   --primary: oklch(0.55 0.25 275);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.18 0.05 275);
-  --secondary-foreground: oklch(0.85 0.1 275);
-  --muted: oklch(0.14 0.03 270);
-  --muted-foreground: oklch(0.65 0.05 270);
+  --secondary: oklch(0.22 0.06 275);
+  --secondary-foreground: oklch(0.9 0.1 275);
+  --muted: oklch(0.18 0.04 270);
+  --muted-foreground: oklch(0.7 0.05 270);
   --accent: oklch(0.75 0.2 300);
   --accent-foreground: oklch(0.1 0.05 300);
   --destructive: oklch(0.55 0.22 25);
-  --border: oklch(0.22 0.05 270);
-  --input: oklch(0.18 0.05 270);
+  --border: oklch(0.28 0.06 275);
+  --input: oklch(0.22 0.06 275);
   --ring: oklch(0.55 0.25 275);
   --chart-1: oklch(0.55 0.25 275);
   --chart-2: oklch(0.75 0.2 300);
@@ -74,29 +74,29 @@
   --chart-4: oklch(0.65 0.2 30);
   --chart-5: oklch(0.4 0.12 200);
   --radius: 0.75rem;
-  --sidebar: oklch(0.06 0.02 270);
-  --sidebar-foreground: oklch(0.98 0.01 270);
+  --sidebar: oklch(0.12 0.03 275);
+  --sidebar-foreground: oklch(0.98 0.01 275);
   --sidebar-primary: oklch(0.55 0.25 275);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.18 0.05 275);
-  --sidebar-accent-foreground: oklch(0.85 0.1 275);
-  --sidebar-border: oklch(0.22 0.05 270);
+  --sidebar-accent: oklch(0.22 0.06 275);
+  --sidebar-accent-foreground: oklch(0.9 0.1 275);
+  --sidebar-border: oklch(0.28 0.06 275);
   --sidebar-ring: oklch(0.55 0.25 275);
 }
 
 /* Billion Dollar Design Utilities */
 @utility glass {
-  background-color: rgba(30, 20, 50, 0.4);
+  background-color: rgba(45, 30, 75, 0.3);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 @utility glass-dark {
-  background-color: rgba(10, 5, 25, 0.7);
+  background-color: rgba(20, 10, 45, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
 @utility text-gradient {
