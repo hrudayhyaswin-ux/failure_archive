@@ -155,7 +155,6 @@
 
 @utility scanline {
   position: relative;
-  overflow: hidden;
   &::after {
     content: "";
     position: absolute;
