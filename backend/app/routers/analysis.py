@@ -37,19 +37,24 @@ def analyze_failure(request: schemas.AIAnalysisRequest):
             "Validate demand before scaling",
             "Focus on customer retention",
             "Ensure team alignment on vision"
-        ]
+        ],
+        "market_sentiment": "High saturation with diminishing marginal returns on user acquisition.",
+        "competitor_dynamics": "Aggressive incumbent behavior coupled with low differentiation.",
+        "forensic_summary": "The venture failed due to a lack of fundamental unit economics and premature scaling in a crowded vertical."
     }
 
     prompt = f"""
-    Analyze the following failure story and provide a structured root cause analysis.
+    Act as a elite venture capital forensic analyst. Analyze the following failure story with extreme precision.
     Story: {request.story}
-    
-    Return the result in JSON format with the following keys:
-    - root_cause_analysis: A dictionary with categories and percentages totaling 100.
-    - risk_score: A float from 1 to 10.
-    - recommendations: A list of 3 actionable items to avoid this failure.
-    """
 
+    Provide a deep multi-dimensional analysis in JSON format with exactly these keys:
+    - root_cause_analysis: Dictionary of 4 core failure vectors with percentages (must total 100).
+    - risk_score: Float from 1 to 10.
+    - recommendations: List of 3 highly specific, non-obvious strategic remediation steps.
+    - market_sentiment: A short (1 sentence) sophisticated summary of the market conditions described.
+    - competitor_dynamics: A short (1 sentence) analysis of the competitive landscape.
+    - forensic_summary: A 2-sentence expert summary of why this specific venture collapsed.
+    """
     # 1. Try Gemini (Free Tier)
     gemini_key = os.getenv("GEMINI_API_KEY")
     if gemini_key and gemini_key != "your_api_key_here":

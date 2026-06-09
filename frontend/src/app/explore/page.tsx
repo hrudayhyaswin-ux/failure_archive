@@ -65,38 +65,34 @@ export default function ExplorePage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredFailures.map((failure) => (
-            <div key={failure.id} className="group relative glass rounded-[2rem] border-none overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:bg-white animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 group-hover:bg-primary/10 transition-colors"></div>
+            <div key={failure.id} className="group relative terminal-box p-8 h-full flex flex-col transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.1)] animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="flex justify-between items-start mb-6">
+                <span className="text-[9px] font-black px-3 py-1 bg-primary/10 text-primary border border-primary/20 uppercase tracking-[0.2em]">
+                  {failure.category}
+                </span>
+                <span className="text-[9px] font-black text-muted-foreground uppercase tracking-[0.2em]">{failure.year}</span>
+              </div>
               
-              <div className="p-8 h-full flex flex-col">
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-[10px] font-black px-3 py-1 bg-primary/10 text-primary rounded-full uppercase tracking-[0.2em] border border-primary/5">
-                    {failure.category}
-                  </span>
-                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">{failure.year}</span>
+              <h3 className="text-2xl font-black text-foreground mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors leading-tight">
+                {failure.title}
+              </h3>
+              
+              <p className="text-muted-foreground text-sm line-clamp-3 mb-8 font-mono leading-relaxed opacity-70">
+                {failure.description}
+              </p>
+              
+              <div className="mt-auto pt-6 border-t border-primary/10 flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary/60">Sector</span>
+                  <span className="text-xs font-bold text-foreground/80 font-mono">{failure.industry}</span>
                 </div>
                 
-                <h3 className="text-3xl font-serif font-bold text-foreground mb-4 group-hover:text-primary transition-colors leading-tight">
-                  {failure.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-base line-clamp-3 mb-8 font-light leading-relaxed">
-                  {failure.description}
-                </p>
-                
-                <div className="mt-auto pt-6 border-t border-border/50 flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground">Sector</span>
-                    <span className="text-xs font-bold text-foreground/80">{failure.industry}</span>
-                  </div>
-                  
-                  <Link 
-                    href={`/explore/${failure.id}`} 
-                    className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-foreground text-background group-hover:bg-primary group-hover:scale-110 transition-all duration-300 shadow-lg"
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
+                <Link 
+                  href={`/explore/${failure.id}`} 
+                  className="inline-flex items-center justify-center h-10 w-10 border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-[0_0_15px_rgba(56,189,248,0.1)]"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           ))}
