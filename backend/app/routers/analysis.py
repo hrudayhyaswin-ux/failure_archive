@@ -1,7 +1,7 @@
 import os
 import json
 from fastapi import APIRouter, HTTPException
-from .. import schemas
+from app import schemas
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -9,11 +9,17 @@ load_dotenv()
 
 router = APIRouter()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Initialize client lazily or safely
+def get_openai_client():
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return None
+    return OpenAI(api_key=api_key)
 
 @router.post("/", response_model=schemas.AIAnalysisResponse)
 def analyze_failure(request: schemas.AIAnalysisRequest):
-    if not os.getenv("OPENAI_API_KEY"):
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
         # Fallback dummy response if no API key is provided
         return {
             "root_cause_analysis": {
@@ -31,6 +37,10 @@ def analyze_failure(request: schemas.AIAnalysisRequest):
         }
 
     try:
+        client = get_openai_client()
+        if not client:
+             raise HTTPException(status_code=500, detail="OpenAI client not initialized")
+             
         prompt = f"""
         Analyze the following failure story and provide a structured root cause analysis.
         Story: {request.story}

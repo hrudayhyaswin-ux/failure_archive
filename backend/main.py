@@ -1,20 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import failures, submissions, analysis
+from app.routers import failures, submissions, analysis
 
 app = FastAPI(title="Failure Archive API")
 
 @app.on_event("startup")
 def startup_event():
-    # Create database tables on startup
     try:
-        from .database import engine, Base
+        from app.database import engine, Base
         Base.metadata.create_all(bind=engine)
         print("Database initialized successfully")
     except Exception as e:
         print(f"Database initialization failed: {e}")
 
-# CORS setup
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,4 +27,4 @@ app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to Failure Archive API"}
+    return {"message": "Welcome to Failure Archive API", "status": "online"}

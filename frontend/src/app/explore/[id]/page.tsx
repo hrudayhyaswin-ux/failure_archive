@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { getFailure, Failure } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Building2, Tag, ArrowLeft, Info, FileText, CheckCircle } from "lucide-react";
+import { Calendar, Building2, Tag, ArrowLeft, Info, FileText, CheckCircle, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function FailureDetailsPage() {
@@ -61,6 +61,52 @@ export default function FailureDetailsPage() {
               <p className="text-slate-700 leading-relaxed text-lg">
                 {failure.description}
               </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Calendar className="mr-2 h-5 w-4 text-orange-500" />
+                Failure Timeline
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                    <Zap className="h-4 w-4" />
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[45%] p-4 rounded border border-slate-200 bg-white shadow-sm">
+                    <div className="flex items-center justify-between space-x-2 mb-1">
+                      <div className="font-bold text-slate-900">{failure.year - 2}</div>
+                    </div>
+                    <div className="text-slate-500 text-sm">Initial Launch & Early Growth</div>
+                  </div>
+                </div>
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                    <Zap className="h-4 w-4" />
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[45%] p-4 rounded border border-slate-200 bg-white shadow-sm">
+                    <div className="flex items-center justify-between space-x-2 mb-1">
+                      <div className="font-bold text-slate-900">{failure.year - 1}</div>
+                    </div>
+                    <div className="text-slate-500 text-sm">Market Expansion & Product Pivot</div>
+                  </div>
+                </div>
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-red-500 text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                    <Zap className="h-4 w-4" />
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[45%] p-4 rounded border border-red-100 bg-red-50 shadow-sm">
+                    <div className="flex items-center justify-between space-x-2 mb-1">
+                      <div className="font-bold text-red-900">{failure.year}</div>
+                    </div>
+                    <div className="text-red-700 text-sm">Project Discontinuation</div>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

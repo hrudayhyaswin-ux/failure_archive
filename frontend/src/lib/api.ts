@@ -6,6 +6,20 @@ export const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
+// Add interceptor for logging
+api.interceptors.request.use(request => {
+  console.log('Starting Request', request.url)
+  return request
+})
+
+api.interceptors.response.use(response => {
+  console.log('Response:', response)
+  return response
+}, error => {
+  console.error('API Error:', error.response || error.message)
+  return Promise.reject(error)
+})
+
 export interface Failure {
   id: number;
   title: string;
