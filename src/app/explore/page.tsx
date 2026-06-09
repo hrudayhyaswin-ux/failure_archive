@@ -9,13 +9,20 @@ import { Search } from "lucide-react";
 export default function ExplorePage() {
   const [failures, setFailures] = useState<Failure[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    getFailures().then((data) => {
-      setFailures(data);
-      setLoading(false);
-    });
+    getFailures()
+      .then((data) => {
+        setFailures(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(`Failed to connect to backend at ${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}. Error: ${err.message}`);
+        setLoading(false);
+      });
   }, []);
 
   const filteredFailures = failures.filter(f => 
@@ -42,6 +49,12 @@ export default function ExplorePage() {
           />
         </div>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg mb-10 text-sm">
+          {error}
+        </div>
+      )}
 
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
