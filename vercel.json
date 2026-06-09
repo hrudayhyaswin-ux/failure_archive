@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "rootDirectory": "frontend",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://YOUR_HF_USERNAME-YOUR_HF_SPACE_NAME.hf.space/api/:path*"
+    }
+  ]
+}
