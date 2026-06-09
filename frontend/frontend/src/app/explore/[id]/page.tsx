@@ -22,154 +22,159 @@ export default function FailureDetailsPage() {
     }
   }, [id]);
 
-  if (loading) return <div className="container mx-auto py-20 text-center">Loading details...</div>;
-  if (!failure) return <div className="container mx-auto py-20 text-center">Failure not found.</div>;
+  if (loading) return (
+    <div className="container mx-auto py-40 text-center">
+      <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+        <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+      </div>
+      <p className="mt-4 text-muted-foreground font-medium">Decrypting Archive...</p>
+    </div>
+  );
+
+  if (!failure) return <div className="container mx-auto py-20 text-center font-serif text-2xl">Archive entry not found.</div>;
 
   return (
-    <div className="container mx-auto py-10 px-4 max-w-5xl">
-      <Button variant="ghost" className="mb-6" asChild>
+    <div className="container mx-auto py-12 px-4 max-w-6xl">
+      <Button variant="ghost" className="mb-10 hover:bg-primary/5 -ml-4" asChild>
         <Link href="/explore">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Explore
+          <ArrowLeft className="mr-2 h-4 w-4" /> Return to Intelligence Database
         </Link>
       </Button>
 
-      <div className="grid lg:grid-cols-3 gap-10">
-        <div className="lg:col-span-2 space-y-8">
-          <div>
-            <h1 className="text-5xl font-bold text-slate-900 mb-4">{failure.title}</h1>
-            <div className="flex flex-wrap gap-4 text-sm text-slate-500">
-              <div className="flex items-center">
-                <Tag className="mr-1 h-4 w-4" /> {failure.category}
+      <div className="grid lg:grid-cols-3 gap-12">
+        <div className="lg:col-span-2 space-y-12">
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em]">
+                Case Study ID: {failure.id.toString().padStart(4, '0')}
+              </span>
+              <span className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent-foreground text-[10px] font-black uppercase tracking-[0.2em]">
+                Status: Archived
+              </span>
+            </div>
+            <h1 className="text-6xl md:text-7xl font-serif font-black tracking-tighter text-foreground mb-8 leading-tight">
+              {failure.title}
+            </h1>
+            <div className="flex flex-wrap gap-6 text-sm">
+              <div className="flex items-center px-4 py-2 glass rounded-2xl">
+                <Tag className="mr-2 h-4 w-4 text-primary" /> 
+                <span className="font-bold text-foreground/80 uppercase tracking-wider text-[11px]">{failure.category}</span>
               </div>
-              <div className="flex items-center">
-                <Building2 className="mr-1 h-4 w-4" /> {failure.industry}
+              <div className="flex items-center px-4 py-2 glass rounded-2xl">
+                <Building2 className="mr-2 h-4 w-4 text-primary" /> 
+                <span className="font-bold text-foreground/80 uppercase tracking-wider text-[11px]">{failure.industry}</span>
               </div>
-              <div className="flex items-center">
-                <Calendar className="mr-1 h-4 w-4" /> {failure.year}
+              <div className="flex items-center px-4 py-2 glass rounded-2xl">
+                <Calendar className="mr-2 h-4 w-4 text-primary" /> 
+                <span className="font-bold text-foreground/80 uppercase tracking-wider text-[11px]">{failure.year}</span>
               </div>
             </div>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Info className="mr-2 h-5 w-5 text-primary" />
-                Overview
+          <Card className="glass overflow-hidden border-none rounded-[2rem] hover-lift">
+            <CardHeader className="bg-primary/[0.03] border-b border-primary/5 py-6">
+              <CardTitle className="flex items-center font-serif text-2xl">
+                <Info className="mr-3 h-6 w-6 text-primary" />
+                Strategic Overview
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-slate-700 leading-relaxed text-lg">
+            <CardContent className="p-8">
+              <p className="text-muted-foreground leading-relaxed text-xl font-light">
                 {failure.description}
               </p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Calendar className="mr-2 h-5 w-4 text-orange-500" />
-                Failure Timeline
+          <Card className="glass border-none rounded-[2rem] hover-lift">
+            <CardHeader className="py-6">
+              <CardTitle className="flex items-center font-serif text-2xl">
+                <Calendar className="mr-3 h-6 w-6 text-accent" />
+                Failure Vectors & Timeline
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
-                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                    <Zap className="h-4 w-4" />
-                  </div>
-                  <div className="w-[calc(100%-4rem)] md:w-[45%] p-4 rounded border border-slate-200 bg-white shadow-sm">
-                    <div className="flex items-center justify-between space-x-2 mb-1">
-                      <div className="font-bold text-slate-900">{failure.year - 2}</div>
+            <CardContent className="p-8">
+              <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+                {[
+                  { year: failure.year - 2, title: "Capital Injection & Strategic Deployment" },
+                  { year: failure.year - 1, title: "Market Friction & Intelligence Pivot" },
+                  { year: failure.year, title: "Operational Shutdown & Archive Entry", active: true }
+                ].map((item, i) => (
+                  <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div className={`flex items-center justify-center w-12 h-12 rounded-2xl border-4 border-background ${item.active ? 'bg-destructive text-white' : 'bg-primary text-white'} shadow-xl z-10 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform group-hover:scale-110`}>
+                      <Zap className="h-5 w-5" />
                     </div>
-                    <div className="text-slate-500 text-sm">Initial Launch & Early Growth</div>
-                  </div>
-                </div>
-                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                    <Zap className="h-4 w-4" />
-                  </div>
-                  <div className="w-[calc(100%-4rem)] md:w-[45%] p-4 rounded border border-slate-200 bg-white shadow-sm">
-                    <div className="flex items-center justify-between space-x-2 mb-1">
-                      <div className="font-bold text-slate-900">{failure.year - 1}</div>
+                    <div className={`w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-3xl glass border-none shadow-lg transition-all duration-300 group-hover:shadow-2xl ${item.active ? 'bg-destructive/5' : ''}`}>
+                      <div className="flex items-center justify-between space-x-2 mb-2">
+                        <div className={`text-2xl font-serif font-black ${item.active ? 'text-destructive' : 'text-primary'}`}>{item.year}</div>
+                      </div>
+                      <div className={`font-bold tracking-tight leading-snug ${item.active ? 'text-destructive' : 'text-foreground'}`}>{item.title}</div>
                     </div>
-                    <div className="text-slate-500 text-sm">Market Expansion & Product Pivot</div>
                   </div>
-                </div>
-                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-red-500 text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                    <Zap className="h-4 w-4" />
-                  </div>
-                  <div className="w-[calc(100%-4rem)] md:w-[45%] p-4 rounded border border-red-100 bg-red-50 shadow-sm">
-                    <div className="flex items-center justify-between space-x-2 mb-1">
-                      <div className="font-bold text-red-900">{failure.year}</div>
-                    </div>
-                    <div className="text-red-700 text-sm">Project Discontinuation</div>
-                  </div>
-                </div>
+                ))}
               </div>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <FileText className="mr-2 h-5 w-5 text-red-500" />
-                Root Causes
+          <Card className="glass border-none rounded-[2rem] hover-lift">
+            <CardHeader className="bg-destructive/[0.03] border-b border-destructive/5 py-6">
+              <CardTitle className="flex items-center font-serif text-2xl text-destructive">
+                <FileText className="mr-3 h-6 w-6" />
+                Root Cause Identification
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-slate-700 leading-relaxed">
+            <CardContent className="p-8">
+              <p className="text-muted-foreground leading-relaxed text-lg">
                 {failure.failure_reason}
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-teal-100 bg-teal-50">
-            <CardHeader>
-              <CardTitle className="flex items-center text-teal-900">
-                <CheckCircle className="mr-2 h-5 w-5 text-teal-600" />
-                Key Lessons Learned
+          <Card className="bg-primary border-none rounded-[2rem] shadow-2xl relative overflow-hidden group hover-lift">
+            <div className="absolute inset-0 grid-pattern opacity-20 group-hover:opacity-30 transition-opacity"></div>
+            <CardHeader className="py-8 relative z-10">
+              <CardTitle className="flex items-center text-primary-foreground font-serif text-3xl">
+                <CheckCircle className="mr-4 h-8 w-8 text-accent" />
+                Intelligence Summary
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-teal-800 leading-relaxed font-medium">
-                {failure.lesson}
-              </p>
+            <CardContent className="p-10 pt-0 relative z-10">
+              <div className="text-primary-foreground leading-relaxed text-2xl font-serif italic opacity-90">
+                "{failure.lesson}"
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="space-y-6">
-          <Card className="bg-slate-900 text-white border-slate-800">
-            <CardHeader>
-              <CardTitle className="text-lg">AI Quick Insight</CardTitle>
+        <div className="space-y-8 animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
+          <Card className="bg-foreground text-background border-none rounded-[2rem] shadow-2xl overflow-hidden group hover-lift">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
+            <CardHeader className="py-8 border-b border-white/10">
+              <CardTitle className="text-xl font-serif">AI Neural Insight</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                The primary failure vector for {failure.title} was a combination of 
-                <span className="text-white font-bold"> {failure.category.toLowerCase()} instability </span> 
-                and market misalignment.
+            <CardContent className="p-8">
+              <p className="text-background/80 text-lg leading-relaxed font-light mb-8">
+                The primary failure vector for <span className="text-white font-bold">{failure.title}</span> was identified as <span className="text-primary-foreground font-black underline decoration-primary decoration-4 underline-offset-4">{failure.category.toLowerCase()} instability</span>. 
               </p>
-              <Button className="w-full mt-6 bg-white text-slate-900 hover:bg-slate-100" asChild>
-                <Link href="/analyzer">Analyze Similar Cases</Link>
+              <Button size="lg" className="w-full bg-white text-foreground hover:bg-white/90 rounded-2xl h-14 font-bold" asChild>
+                <Link href="/analyzer">Generate Deep Analysis</Link>
               </Button>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm uppercase tracking-wider text-slate-500">Industry Context</CardTitle>
+          <Card className="glass border-none rounded-[2rem] hover-lift">
+            <CardHeader className="py-6 border-b border-border/50">
+              <CardTitle className="text-xs uppercase tracking-[0.3em] font-black text-muted-foreground">Market Ecosystem</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="text-sm">
-                  <div className="font-bold text-slate-900">Market Saturation</div>
-                  <div className="text-slate-600">Moderate in {failure.year}</div>
-                </div>
-                <div className="text-sm">
-                  <div className="font-bold text-slate-900">Typical Failure Rate</div>
-                  <div className="text-slate-600">75% in {failure.industry}</div>
-                </div>
+            <CardContent className="p-8 space-y-8">
+              <div className="group">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-2">Market Saturation Index</div>
+                <div className="text-2xl font-serif font-bold text-foreground">Critical Level</div>
+                <div className="text-xs text-muted-foreground mt-1">High Volatility in {failure.year}</div>
+              </div>
+              <div className="group pt-6 border-t border-border/50">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-2">Sector Mortality Rate</div>
+                <div className="text-2xl font-serif font-bold text-foreground">78.4%</div>
+                <div className="text-xs text-muted-foreground mt-1">Historical avg for {failure.industry}</div>
               </div>
             </CardContent>
           </Card>

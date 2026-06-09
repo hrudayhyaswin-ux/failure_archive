@@ -73,25 +73,25 @@ export default function AnalyzerPage() {
         {/* Results Section */}
         <div className="space-y-6">
           {analysis ? (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <Card className="border-primary/20 bg-primary/5">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center text-primary">
-                    <CheckCircle2 className="mr-2 h-5 w-5" />
-                    Root Cause Analysis
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <Card className="glass border-none rounded-[2rem] overflow-hidden hover-lift shadow-2xl">
+                <CardHeader className="bg-primary/5 border-b border-primary/5 py-8">
+                  <CardTitle className="text-2xl font-serif flex items-center text-primary">
+                    <CheckCircle2 className="mr-3 h-7 w-7" />
+                    Neural Diagnostic Report
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="p-8">
+                  <div className="space-y-8">
                     {Object.entries(analysis.root_cause_analysis).map(([cause, percent]: any) => (
-                      <div key={cause}>
-                        <div className="flex justify-between text-sm mb-1 text-foreground/80">
-                          <span className="font-medium">{cause}</span>
-                          <span>{percent}%</span>
+                      <div key={cause} className="group">
+                        <div className="flex justify-between items-end mb-3">
+                          <span className="text-sm font-black uppercase tracking-[0.2em] text-foreground/70">{cause}</span>
+                          <span className="text-xl font-serif font-bold text-primary">{percent}%</span>
                         </div>
-                        <div className="w-full bg-secondary h-2 rounded-full overflow-hidden">
+                        <div className="w-full bg-primary/5 h-3 rounded-full overflow-hidden p-0.5 border border-primary/10">
                           <div 
-                            className="bg-primary h-full rounded-full transition-all duration-1000" 
+                            className="bg-gradient-to-r from-primary to-accent h-full rounded-full transition-all duration-1500 ease-out shadow-[0_0_10px_rgba(79,70,229,0.3)]" 
                             style={{ width: `${percent}%` }}
                           ></div>
                         </div>
@@ -101,33 +101,38 @@ export default function AnalyzerPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center text-accent-foreground">
-                    <AlertTriangle className="mr-2 h-5 w-5 text-accent" />
-                    Failure Score: {analysis.risk_score}/10
+              <Card className="glass border-none rounded-[2rem] hover-lift">
+                <CardHeader className="py-8">
+                  <CardTitle className="text-2xl font-serif flex items-center text-foreground">
+                    <AlertTriangle className="mr-3 h-7 w-7 text-accent" />
+                    Critical Risk Index: {analysis.risk_score}/10
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground italic">
-                    Based on your story, this project had a high risk profile in its {Object.keys(analysis.root_cause_analysis)[0].toLowerCase()} phase.
-                  </p>
+                <CardContent className="p-8 pt-0">
+                  <div className="p-6 bg-accent/5 rounded-2xl border border-accent/10 italic text-muted-foreground text-lg font-serif">
+                    "This venture demonstrated a high-volatility risk profile, primarily concentrated in its initial {Object.keys(analysis.root_cause_analysis)[0].toLowerCase()} deployment phase."
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-accent/20 bg-accent/5">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center text-accent-foreground">
-                    <Lightbulb className="mr-2 h-5 w-5 text-accent" />
-                    How to Avoid This Next Time
+              <Card className="bg-primary border-none rounded-[2rem] shadow-2xl relative overflow-hidden group hover-lift">
+                <div className="absolute inset-0 grid-pattern opacity-20"></div>
+                <CardHeader className="py-8 relative z-10">
+                  <CardTitle className="text-2xl font-serif flex items-center text-primary-foreground">
+                    <Lightbulb className="mr-3 h-7 w-7 text-accent" />
+                    Strategic Remediation
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
+                <CardContent className="p-8 pt-0 relative z-10">
+                  <ul className="space-y-6">
                     {analysis.recommendations.map((rec: string, i: number) => (
-                      <li key={i} className="flex items-start text-sm text-foreground/90">
-                        <span className="mr-2 font-bold text-accent">{i+1}.</span>
-                        {rec}
+                      <li key={i} className="flex items-start group/item">
+                        <div className="mr-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-accent font-black text-sm border border-white/20 group-hover/item:scale-110 transition-transform">
+                          {i+1}
+                        </div>
+                        <span className="text-lg text-primary-foreground/90 font-light leading-snug">
+                          {rec}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -135,9 +140,12 @@ export default function AnalyzerPage() {
               </Card>
             </div>
           ) : (
-            <div className="h-full min-h-[400px] border-2 border-dashed border-border rounded-xl flex flex-col items-center justify-center p-10 text-center text-muted-foreground">
-              <Brain className="h-16 w-16 mb-4 opacity-20" />
-              <p>Your analysis will appear here after you describe your story and click the analyze button.</p>
+            <div className="h-full min-h-[500px] border-2 border-dashed border-border/50 rounded-[2rem] glass flex flex-col items-center justify-center p-12 text-center animate-pulse">
+              <div className="h-24 w-24 bg-primary/5 rounded-full flex items-center justify-center mb-6">
+                <Brain className="h-12 w-12 text-primary/30" />
+              </div>
+              <h3 className="text-xl font-serif font-bold text-muted-foreground/60 mb-2">Awaiting Intelligence Story</h3>
+              <p className="text-muted-foreground/40 max-w-xs font-light">Input your venture data and click analyze to generate a neural diagnostic report.</p>
             </div>
           )}
         </div>
