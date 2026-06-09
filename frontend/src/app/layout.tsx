@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen bg-background text-foreground selection:bg-primary/20`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen bg-background text-foreground selection:bg-primary/20 overflow-y-auto`}>
         <Navbar />
         <main>
           {children}
