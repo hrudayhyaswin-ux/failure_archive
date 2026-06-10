@@ -11,6 +11,7 @@ const navItems = [
   { name: "AI Analyzer", href: "/analyzer" },
   { name: "Dashboard", href: "/dashboard" },
   { name: "Submit", href: "/submit" },
+  { name: "Legal", href: "/terms" },
 ];
 
 export default function Navbar() {
