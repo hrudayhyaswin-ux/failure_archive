@@ -174,7 +174,6 @@
 
 @utility scanline {
   position: relative;
-  overflow-x: hidden;
   &::after {
     content: "";
     position: absolute;
@@ -343,7 +342,15 @@
 
 @layer base {
   html {
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     scroll-padding-top: 5rem;
+  }
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   * {
     @apply border-border outline-ring/50;
