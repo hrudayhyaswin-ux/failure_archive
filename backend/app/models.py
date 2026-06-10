@@ -36,6 +36,7 @@ class Failure(Base):
     analysis = relationship("AIAnalysis", back_populates="failure", uselist=False)
 
 class AIAnalysis(Base):
+    """Represents the AI-generated forensic report for a specific failure."""
     __tablename__ = "ai_analysis"
 
     id = Column(Integer, primary_key=True, index=True)
