@@ -18,6 +18,7 @@ class User(Base):
     submissions = relationship("Submission", back_populates="user")
 
 class Failure(Base):
+    """Represents a documented business failure case study."""
     __tablename__ = "failures"
 
     id = Column(Integer, primary_key=True, index=True)
