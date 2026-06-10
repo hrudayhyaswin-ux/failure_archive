@@ -204,6 +204,39 @@ Analytics & Reporting
 
 ---
 
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Python 3.10+
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/hrudayhyaswin-ux/failure_archive.git
+   cd failure_archive
+   ```
+
+2. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. **Backend Setup**
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   uvicorn main:app --reload
+   ```
+
+---
+
 ## Future Enhancements
 
 * AI Failure Prediction Engine
