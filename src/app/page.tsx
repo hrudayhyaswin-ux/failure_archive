@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart3, Search, Zap, Globe, Shield, TrendingUp } from "lucide-react";
+import { ArrowRight, Search, Zap, Globe, Shield, TrendingUp } from "lucide-react";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            The world's most sophisticated repository of business and product failures. 
+            The world&apos;s most sophisticated repository of business and product failures. 
             Decode the past to engineer a bulletproof future with proprietary AI insights.
           </p>
           
@@ -109,7 +109,7 @@ export default function Home() {
         <div className="container mx-auto max-w-4xl relative z-10">
           <Globe className="h-16 w-16 text-primary-foreground/40 mx-auto mb-10" />
           <h2 className="text-4xl md:text-6xl font-serif font-bold text-primary-foreground mb-10 leading-tight">
-            "The only real mistake is the one from which we learn nothing."
+            &quot;The only real mistake is the one from which we learn nothing.&quot;
           </h2>
           <p className="text-primary-foreground/70 text-xl font-medium uppercase tracking-[0.3em]">
             Henry Ford • Engineering Future Success

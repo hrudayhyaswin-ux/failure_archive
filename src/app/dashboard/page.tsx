@@ -17,6 +17,8 @@ import {
 } from "recharts";
 
 const COLORS = ["#3b82f6", "#8b5cf6", "#14b8a6", "#f59e0b", "#ef4444"];
+type CategoryDatum = { name: string; value: number };
+type IndustryDatum = { name: string; count: number };
 
 export default function DashboardPage() {
   const [failures, setFailures] = useState<Failure[]>([]);
@@ -29,9 +31,8 @@ export default function DashboardPage() {
     });
   }, []);
 
-  // Simple aggregation for charts
-  const categoryData = failures.reduce((acc: any, f) => {
-    const existing = acc.find((item: any) => item.name === f.category);
+  const categoryData = failures.reduce<CategoryDatum[]>((acc, f) => {
+    const existing = acc.find((item) => item.name === f.category);
     if (existing) {
       existing.value += 1;
     } else {
@@ -40,8 +41,8 @@ export default function DashboardPage() {
     return acc;
   }, []);
 
-  const industryData = failures.reduce((acc: any, f) => {
-    const existing = acc.find((item: any) => item.name === f.industry);
+  const industryData = failures.reduce<IndustryDatum[]>((acc, f) => {
+    const existing = acc.find((item) => item.name === f.industry);
     if (existing) {
       existing.count += 1;
     } else {
@@ -52,7 +53,10 @@ export default function DashboardPage() {
 
   return (
     <div className="container mx-auto py-10 px-4">
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Platform Dashboard</h1>
+      <div className="mb-8 flex flex-col gap-2">
+        <h1 className="text-4xl font-bold text-slate-900">Platform Dashboard</h1>
+        {loading && <p className="text-sm text-muted-foreground">Loading dashboard data...</p>}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <Card>
@@ -69,7 +73,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">
-              {categoryData.sort((a: any, b: any) => b.value - a.value)[0]?.name || "N/A"}
+              {[...categoryData].sort((a, b) => b.value - a.value)[0]?.name || "N/A"}
             </div>
           </CardContent>
         </Card>
@@ -119,7 +123,7 @@ export default function DashboardPage() {
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {categoryData.map((entry: any, index: number) => (
+                  {categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

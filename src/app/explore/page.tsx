@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getFailures, Failure } from "@/lib/api";
-import { Button } from "@/components/ui/button";
 import { Search, ArrowRight } from "lucide-react";
 
 export default function ExplorePage() {
@@ -78,7 +77,7 @@ export default function ExplorePage() {
               </h3>
               
               <p className="text-muted-foreground/70 text-sm line-clamp-3 mb-10 font-medium leading-relaxed italic">
-                "{failure.description}"
+                &quot;{failure.description}&quot;
               </p>
               
               <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
