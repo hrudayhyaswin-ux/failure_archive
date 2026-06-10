@@ -358,7 +358,7 @@ export default function AnalyzerPage() {
           <span className="opacity-40">TLS v1.3 AES-256</span>
         </div>
         <div className="flex items-center gap-6">
-          <div className="hidden sm:block">Session: NF-{Math.random().toString(36).substring(7).toUpperCase()}</div>
+          <div className="hidden sm:block">Session: NF-{Math.random().toString(36).substring(7).toUpperCase()} • {new Date().toLocaleTimeString()}</div>
           <div className="text-primary/60">Neural v4.0.2</div>
         </div>
       </div>
