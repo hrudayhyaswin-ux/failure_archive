@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Failure Archive | The Intelligence of Failure",
-  description: "The world's most comprehensive database of business and product failures, powered by AI.",
+  title: "Failure Archive | Neural Forensic Intelligence",
+  description: "Advanced intelligence platform for analyzing and learning from global venture failures.",
 };
 
 export default function RootLayout({
