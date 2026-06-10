@@ -115,6 +115,25 @@
   box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
 }
 
+@utility glow-cta {
+  box-shadow:
+    0 0 22px rgba(168, 85, 247, 0.34),
+    0 0 60px rgba(99, 102, 241, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+@utility glow-cta-subtle {
+  box-shadow:
+    0 0 20px rgba(216, 180, 254, 0.18),
+    0 12px 34px rgba(15, 23, 42, 0.22);
+}
+
+@utility hover-scale {
+  &:hover {
+    transform: translateY(-4px) scale(1.045);
+  }
+}
+
 @utility terminal-box {
   border: 1px solid var(--border);
   background: rgba(10, 5, 25, 0.4);
@@ -184,6 +203,34 @@
 }
 
 @layer utilities {
+  @keyframes hero-gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes hero-particle-float {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0) scale(0.75);
+    }
+    18% { opacity: 0.78; }
+    100% {
+      opacity: 0;
+      transform: translate3d(var(--particle-drift), -112px, 0) scale(1);
+    }
+  }
+  @keyframes hero-content-rise {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
   @keyframes gradient-shift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -204,6 +251,94 @@
   .animate-progress-linear {
     animation: progress-linear 2s ease-in-out infinite;
   }
+}
+
+@layer components {
+  .hero-shell {
+    isolation: isolate;
+    min-height: min(860px, calc(100vh - 4rem));
+  }
+
+  .hero-gradient-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -20;
+    background:
+      linear-gradient(120deg, rgba(99, 102, 241, 0.26), rgba(20, 184, 166, 0.12), rgba(236, 72, 153, 0.22), rgba(245, 158, 11, 0.12)),
+      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.12), transparent 34%),
+      var(--background);
+    background-size: 300% 300%, 100% 100%, 100% 100%;
+    animation: hero-gradient-flow 14s ease-in-out infinite;
+  }
+
+  .hero-gradient-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(15, 10, 35, 0.05), var(--background) 92%),
+      radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.08), transparent 48%);
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-particles span {
+    --particle-drift: 28px;
+    position: absolute;
+    bottom: -28px;
+    left: var(--particle-x);
+    width: var(--particle-size);
+    height: var(--particle-size);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow:
+      0 0 14px rgba(255, 255, 255, 0.32),
+      0 0 28px rgba(168, 85, 247, 0.28);
+    animation: hero-particle-float var(--particle-speed) linear infinite;
+    animation-delay: var(--particle-delay);
+  }
+
+  .hero-particles span:nth-child(1) { --particle-x: 6%; --particle-size: 3px; --particle-speed: 11s; --particle-delay: -2s; --particle-drift: 32px; }
+  .hero-particles span:nth-child(2) { --particle-x: 12%; --particle-size: 5px; --particle-speed: 16s; --particle-delay: -8s; --particle-drift: -42px; }
+  .hero-particles span:nth-child(3) { --particle-x: 19%; --particle-size: 2px; --particle-speed: 13s; --particle-delay: -4s; --particle-drift: 38px; }
+  .hero-particles span:nth-child(4) { --particle-x: 27%; --particle-size: 4px; --particle-speed: 18s; --particle-delay: -12s; --particle-drift: -28px; }
+  .hero-particles span:nth-child(5) { --particle-x: 35%; --particle-size: 3px; --particle-speed: 14s; --particle-delay: -7s; --particle-drift: 48px; }
+  .hero-particles span:nth-child(6) { --particle-x: 42%; --particle-size: 6px; --particle-speed: 20s; --particle-delay: -13s; --particle-drift: -54px; }
+  .hero-particles span:nth-child(7) { --particle-x: 49%; --particle-size: 2px; --particle-speed: 12s; --particle-delay: -5s; --particle-drift: 26px; }
+  .hero-particles span:nth-child(8) { --particle-x: 55%; --particle-size: 4px; --particle-speed: 17s; --particle-delay: -10s; --particle-drift: -36px; }
+  .hero-particles span:nth-child(9) { --particle-x: 61%; --particle-size: 3px; --particle-speed: 15s; --particle-delay: -3s; --particle-drift: 40px; }
+  .hero-particles span:nth-child(10) { --particle-x: 67%; --particle-size: 5px; --particle-speed: 19s; --particle-delay: -11s; --particle-drift: -46px; }
+  .hero-particles span:nth-child(11) { --particle-x: 73%; --particle-size: 2px; --particle-speed: 13s; --particle-delay: -6s; --particle-drift: 34px; }
+  .hero-particles span:nth-child(12) { --particle-x: 79%; --particle-size: 4px; --particle-speed: 16s; --particle-delay: -9s; --particle-drift: -30px; }
+  .hero-particles span:nth-child(13) { --particle-x: 84%; --particle-size: 3px; --particle-speed: 12s; --particle-delay: -1s; --particle-drift: 44px; }
+  .hero-particles span:nth-child(14) { --particle-x: 89%; --particle-size: 5px; --particle-speed: 21s; --particle-delay: -15s; --particle-drift: -52px; }
+  .hero-particles span:nth-child(15) { --particle-x: 94%; --particle-size: 2px; --particle-speed: 14s; --particle-delay: -7s; --particle-drift: 24px; }
+  .hero-particles span:nth-child(16) { --particle-x: 31%; --particle-size: 5px; --particle-speed: 22s; --particle-delay: -17s; --particle-drift: -62px; }
+  .hero-particles span:nth-child(17) { --particle-x: 58%; --particle-size: 2px; --particle-speed: 10s; --particle-delay: -4s; --particle-drift: 30px; }
+  .hero-particles span:nth-child(18) { --particle-x: 87%; --particle-size: 3px; --particle-speed: 18s; --particle-delay: -14s; --particle-drift: -40px; }
+
+  .hero-content > * {
+    opacity: 0;
+    animation: hero-content-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-kicker { animation-delay: 80ms; }
+  .hero-title {
+    animation-delay: 220ms;
+    text-shadow: 0 16px 52px rgba(0, 0, 0, 0.32);
+  }
+  .hero-copy {
+    animation-delay: 360ms;
+    font-weight: 500;
+  }
+  .hero-actions { animation-delay: 500ms; }
+  .hero-content > div:last-child { animation-delay: 680ms; }
 }
 
 @layer base {

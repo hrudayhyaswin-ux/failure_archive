@@ -6,36 +6,42 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="relative w-full py-24 lg:py-40 flex flex-col items-center text-center px-4 overflow-hidden">
+      <section className="hero-shell relative w-full py-24 lg:py-40 flex flex-col items-center text-center px-4 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse"></div>
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
         </div>
+        <div className="hero-gradient-bg" aria-hidden="true"></div>
+        <div className="hero-particles" aria-hidden="true">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <span key={i}></span>
+          ))}
+        </div>
 
-        <div className="container mx-auto max-w-5xl relative">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold tracking-widest uppercase mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <div className="container mx-auto max-w-5xl relative hero-content">
+          <div className="hero-kicker inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold tracking-widest uppercase mb-8">
             <TrendingUp className="h-3 w-3" />
             The Intelligence of Failure
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tight text-foreground mb-8 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+          <h1 className="hero-title text-6xl md:text-8xl font-serif font-black tracking-tight text-foreground mb-8 leading-[1.1]">
             Master the Art of <br />
             <span className="text-gradient">Strategic Resilience</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+          <p className="hero-copy text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
             The world&apos;s most sophisticated repository of business and product failures. 
             Decode the past to engineer a bulletproof future with proprietary AI insights.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
-            <Button size="lg" className="px-10 h-14 text-lg rounded-full glow-primary hover-lift" asChild>
+          <div className="hero-actions flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Button size="lg" className="px-10 h-14 text-lg rounded-full glow-primary glow-cta hover-lift hover-scale" asChild>
               <Link href="/explore">
                 Explore The Archive <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="px-10 h-14 text-lg rounded-full glass hover-lift" asChild>
+            <Button size="lg" variant="outline" className="px-10 h-14 text-lg rounded-full glass glow-cta-subtle hover-lift hover-scale" asChild>
               <Link href="/analyzer">
                 Run AI Intelligence
               </Link>
