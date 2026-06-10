@@ -48,6 +48,7 @@ class AIAnalysis(Base):
     failure = relationship("Failure", back_populates="analysis")
 
 class Submission(Base):
+    """Represents a user-submitted failure case for review."""
     __tablename__ = "submissions"
 
     id = Column(Integer, primary_key=True, index=True)
