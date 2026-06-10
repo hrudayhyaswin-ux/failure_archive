@@ -54,7 +54,7 @@ export default function SubmitPage() {
     <div className="container mx-auto py-10 px-4 max-w-2xl">
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-slate-900 mb-2">Submit a Failure</h1>
-        <p className="text-slate-600">Help the community learn by sharing a failure story you've analyzed.</p>
+        <p className="text-slate-600">Help the community learn by sharing a failure story you&apos;ve analyzed.</p>
       </div>
 
       <Card>

@@ -19,6 +19,8 @@ Thumbs.db
 # Frontend (if not handled by frontend/.gitignore)
 node_modules/
 .next/
+next-env.d.ts
+dev-server*.log
 out/
 build/
 .vercel/

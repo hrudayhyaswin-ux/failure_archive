@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { getFailure, Failure } from "@/lib/api";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Building2, Tag, ArrowLeft, Info, FileText, CheckCircle, Zap, Activity, ShieldAlert, Brain, ChevronRight } from "lucide-react";
+import { Calendar, Building2, Tag, ArrowLeft, Info, Zap, Activity, ShieldAlert, Brain, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function FailureDetailsPage() {
@@ -129,7 +128,7 @@ export default function FailureDetailsPage() {
                 <Brain className="h-5 w-5" /> Strategic Intelligence Summary
               </div>
               <div className="text-foreground leading-relaxed text-2xl font-bold tracking-tight italic opacity-95">
-                "{failure.lesson}"
+                &quot;{failure.lesson}&quot;
               </div>
             </div>
           </div>

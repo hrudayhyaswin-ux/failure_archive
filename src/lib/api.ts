@@ -32,6 +32,15 @@ export interface Failure {
   created_at: string;
 }
 
+export interface FailureAnalysis {
+  forensic_summary: string;
+  risk_score: number;
+  market_sentiment: string;
+  competitor_dynamics: string;
+  root_cause_analysis: Record<string, number>;
+  recommendations: string[];
+}
+
 export const getFailures = async (): Promise<Failure[]> => {
   const response = await api.get('failures/');
   return response.data;
@@ -42,7 +51,7 @@ export const getFailure = async (id: number): Promise<Failure> => {
   return response.data;
 };
 
-export const analyzeFailure = async (story: string) => {
+export const analyzeFailure = async (story: string): Promise<FailureAnalysis> => {
   const response = await api.post('analysis/', { story });
   return response.data;
 };
