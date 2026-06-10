@@ -11,6 +11,7 @@ const navItems = [
   { name: "AI Analyzer", href: "/analyzer" },
   { name: "Dashboard", href: "/dashboard" },
   { name: "Submit", href: "/submit" },
+  { name: "Security", href: "/security" },
   { name: "Legal", href: "/terms" },
 ];
 
