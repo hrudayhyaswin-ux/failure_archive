@@ -207,6 +207,9 @@
 }
 
 @layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
   * {
     @apply border-border outline-ring/50;
   }
