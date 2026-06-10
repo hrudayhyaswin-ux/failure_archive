@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 from .database import Base
 
 class User(Base):
+    """Represents a system user with authentication and role-based access."""
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
