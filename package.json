@@ -14,6 +14,7 @@
     "knip": "knip",
     "oxlint": "oxlint",
     "audit": "npm audit --audit-level=high",
+    "changelog": "git-cliff -o CHANGELOG.md",
     "prepare": "husky"
   },
   "dependencies": {

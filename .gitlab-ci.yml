@@ -2,6 +2,7 @@ stages:
   - security
   - lint
   - test
+  - release
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
@@ -83,3 +84,18 @@ frontend_test:
   artifacts:
     paths:
       - coverage/
+
+# --- Release Stage ---
+
+generate_changelog:
+  stage: release
+  image:
+    name: orhunp/git-cliff:latest
+    entrypoint: [""]
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - git-cliff --tag $CI_COMMIT_TAG -o CHANGELOG.md
+  artifacts:
+    paths:
+      - CHANGELOG.md
