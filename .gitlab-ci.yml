@@ -1,5 +1,7 @@
 stages:
   - security
+  - format
+  - type_check
   - lint
   - test
   - release
@@ -39,22 +41,47 @@ dependency_audit_backend:
     - pip install pip-audit
     - pip-audit -r backend/requirements.txt
 
+# --- Format Stage ---
+
+ruff_format:
+  stage: format
+  image: python:3.11-slim
+  script:
+    - pip install ruff
+    - ruff format --check backend/app
+
+frontend_format:
+  stage: format
+  image: node:20-slim
+  script:
+    - npm install
+    - npx prettier --check .
+    - npm run biome
+
+# --- Type Check Stage ---
+
+mypy_check:
+  stage: type_check
+  image: python:3.11-slim
+  script:
+    - pip install mypy
+    - mypy backend/app
+
+frontend_type_check:
+  stage: type_check
+  image: node:20-slim
+  script:
+    - npm install
+    - npm run type-check
+
 # --- Lint Stage ---
 
-ruff:
+ruff_lint:
   stage: lint
   image: python:3.11-slim
   script:
     - pip install ruff
     - ruff check backend/app
-    - ruff format --check backend/app
-
-mypy:
-  stage: lint
-  image: python:3.11-slim
-  script:
-    - pip install mypy
-    - mypy backend/app
 
 pylint:
   stage: lint
@@ -76,8 +103,6 @@ frontend_lint:
   script:
     - npm install
     - npm run lint
-    - npx prettier --check .
-    - npm run biome
     - npm run oxlint
 
 # --- Test Stage ---
