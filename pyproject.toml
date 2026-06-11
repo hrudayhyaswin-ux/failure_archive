@@ -1,0 +1,21 @@
+[project]
+name = "failure-archive"
+version = "1.0.0"
+description = "An AI-powered forensic intelligence suite for analyzing and learning from business failures."
+authors = [
+    { name = "Hruday Hyaswin", email = "hruday@example.com" }
+]
+license = { text = "AGPL-3.0" }
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "sqlalchemy",
+    "pydantic",
+    "python-dotenv",
+    "google-genai"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
