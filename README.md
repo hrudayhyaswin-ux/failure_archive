@@ -1,4 +1,7 @@
 # Failure Archive
+> **AI-Powered Forensic Intelligence Suite**
+>
+> Learn from real-world business and venture failures using neural intelligence and deterministic forensic analysis.
 
 ## Learn From Failures Before Making Them
 
