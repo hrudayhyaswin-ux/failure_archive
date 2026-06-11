@@ -149,7 +149,7 @@ Analytics & Reporting
 * Failure Categorization
 * Recommendation Generation
 
-### Search & Filter Module
+###Search & Filter Module
 
 * Search by Title
 * Search by Category
