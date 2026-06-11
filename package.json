@@ -1,6 +1,7 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "failure-archive",
+  "version": "1.0.0",
+  "description": "An AI-powered forensic intelligence suite for analyzing and learning from business failures.",
   "private": true,
   "scripts": {
     "dev": "next dev",
