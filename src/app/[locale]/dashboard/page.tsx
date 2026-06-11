@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { getFailures, Failure } from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -21,6 +22,7 @@ type CategoryDatum = { name: string; value: number };
 type IndustryDatum = { name: string; count: number };
 
 export default function DashboardPage() {
+  const t = useTranslations("Dashboard");
   const [failures, setFailures] = useState<Failure[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,14 +56,14 @@ export default function DashboardPage() {
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="mb-8 flex flex-col gap-2">
-        <h1 className="text-4xl font-bold text-slate-900">Platform Dashboard</h1>
-        {loading && <p className="text-sm text-muted-foreground">Loading dashboard data...</p>}
+        <h1 className="text-4xl font-bold text-slate-900">{t("title")}</h1>
+        {loading && <p className="text-sm text-muted-foreground">{t("loading")}</p>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">Total Failures</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">{t("totalFailures")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">{failures.length}</div>
@@ -69,7 +71,7 @@ export default function DashboardPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">Top Category</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">{t("topCategory")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">
@@ -79,7 +81,7 @@ export default function DashboardPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">Lessons Learned</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">{t("lessonsLearned")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">{failures.length * 3}+</div>
@@ -90,7 +92,7 @@ export default function DashboardPage() {
       <div className="grid lg:grid-cols-2 gap-8">
         <Card>
           <CardHeader>
-            <CardTitle>Failures by Industry</CardTitle>
+            <CardTitle>{t("failuresByIndustry")}</CardTitle>
           </CardHeader>
           <CardContent className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -107,7 +109,7 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Category Distribution</CardTitle>
+            <CardTitle>{t("categoryDistribution")}</CardTitle>
           </CardHeader>
           <CardContent className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -118,7 +120,6 @@ export default function DashboardPage() {
                   cy="50%"
                   labelLine={false}
                   label={({ name, percent }) => `${name} ${(percent ? percent * 100 : 0).toFixed(0)}%`}
-
                   outerRadius={130}
                   fill="#8884d8"
                   dataKey="value"
@@ -136,7 +137,7 @@ export default function DashboardPage() {
 
       <Card className="mt-10">
         <CardHeader>
-          <CardTitle>Recent Failure Submissions</CardTitle>
+          <CardTitle>{t("recentSubmissions")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -146,7 +147,7 @@ export default function DashboardPage() {
                   <div className="font-bold">{f.title}</div>
                   <div className="text-sm text-slate-500">{f.industry} • {f.year}</div>
                 </div>
-                <div className="text-sm font-medium text-primary">View Details</div>
+                <div className="text-sm font-medium text-primary">{t("viewDetails")}</div>
               </div>
             ))}
           </div>

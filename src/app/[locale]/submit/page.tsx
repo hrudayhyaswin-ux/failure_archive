@@ -7,9 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CheckCircle2, UploadCloud } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export default function SubmitPage() {
+  const t = useTranslations("Submit");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -33,16 +35,16 @@ export default function SubmitPage() {
       <div className="container mx-auto py-20 px-4 flex flex-col items-center justify-center">
         <div className="bg-teal-50 border border-teal-100 p-10 rounded-2xl text-center max-w-md">
           <CheckCircle2 className="h-16 w-16 text-teal-600 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-teal-900 mb-2">Submission Received!</h2>
+          <h2 className="text-2xl font-bold text-teal-900 mb-2">{t("successTitle")}</h2>
           <p className="text-teal-700 mb-8">
-            Thank you for contributing to the Failure Archive. Our team will review your submission and add it to the database shortly.
+            {t("successDesc")}
           </p>
           <div className="flex flex-col gap-3">
             <Button asChild>
-              <Link href="/explore">Explore Other Failures</Link>
+              <Link href="/explore">{t("exploreOther")}</Link>
             </Button>
             <Button variant="outline" onClick={() => setSubmitted(false)}>
-              Submit Another
+              {t("submitAnother")}
             </Button>
           </div>
         </div>
@@ -53,21 +55,21 @@ export default function SubmitPage() {
   return (
     <div className="container mx-auto py-10 px-4 max-w-2xl">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-slate-900 mb-2">Submit a Failure</h1>
-        <p className="text-slate-600">Help the community learn by sharing a failure story you&apos;ve analyzed.</p>
+        <h1 className="text-4xl font-bold text-slate-900 mb-2">{t("title")}</h1>
+        <p className="text-slate-600">{t("description")}</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Case Information</CardTitle>
-          <CardDescription>Provide the core details of the project or startup failure.</CardDescription>
+          <CardTitle>{t("caseInfo")}</CardTitle>
+          <CardDescription>{t("caseInfoDesc")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Title of Case</label>
+              <label className="text-sm font-medium">{t("titleLabel")}</label>
               <Input 
-                placeholder="e.g. My Food Delivery Startup" 
+                placeholder={t("titlePlaceholder")}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
@@ -75,9 +77,9 @@ export default function SubmitPage() {
             </div>
             
             <div className="space-y-2">
-              <label className="text-sm font-medium">Detailed Description</label>
+              <label className="text-sm font-medium">{t("descLabel")}</label>
               <Textarea 
-                placeholder="Describe what happened, the industry, the timeline, and the key reasons for failure..." 
+                placeholder={t("descPlaceholder")}
                 className="min-h-[200px]"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -87,11 +89,11 @@ export default function SubmitPage() {
 
             <div className="p-4 bg-slate-50 rounded-lg border border-dashed flex flex-col items-center justify-center text-slate-500">
               <UploadCloud className="h-8 w-8 mb-2 opacity-50" />
-              <p className="text-sm">Upload supporting documents or images (Optional)</p>
+              <p className="text-sm">{t("uploadLabel")}</p>
             </div>
 
             <Button type="submit" className="w-full h-12 text-lg" disabled={loading}>
-              {loading ? "Submitting..." : "Submit for Review"}
+              {loading ? t("submitting") : t("submitButton")}
             </Button>
           </form>
         </CardContent>

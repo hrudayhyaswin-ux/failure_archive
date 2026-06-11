@@ -5,6 +5,7 @@ import { AxiosError } from "axios";
 import { analyzeFailure, FailureAnalysis } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 import { 
   Brain, 
   Layers, 
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 
 export default function AnalyzerPage() {
+  const t = useTranslations("Analyzer");
   const [story, setStory] = useState("");
   const [analysis, setAnalysis] = useState<FailureAnalysis | null>(null);
   const [loading, setLoading] = useState(false);
@@ -27,11 +29,11 @@ export default function AnalyzerPage() {
   const [sessionId] = useState(() => Math.random().toString(36).substring(7).toUpperCase());
 
   const steps = [
-    "INITIALIZING NEURAL LINK...",
-    "DECRYPTING VENTURE ARCHITECTURE...",
-    "SCANNING GLOBAL FAILURE DATABASE...",
-    "RUNNING MONTE CARLO SIMULATIONS...",
-    "SYNTHESIZING REMEDIATION PROTOCOLS..."
+    t("steps.0"),
+    t("steps.1"),
+    t("steps.2"),
+    t("steps.3"),
+    t("steps.4")
   ];
 
   useEffect(() => {
@@ -94,28 +96,27 @@ export default function AnalyzerPage() {
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-primary bg-primary/5 w-fit px-4 py-1.5 rounded-full border border-primary/10">
             <Brain className="h-4 w-4 animate-pulse" />
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">Neural Engine Active</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">{t("status")}</span>
           </div>
           <h1 className="text-5xl font-black tracking-tighter text-foreground">
-            AI <span className="text-gradient">Analyzer</span>
+            {t.rich("title", { gradient: (chunks) => <span className="text-gradient">{chunks}</span> })}
           </h1>
           <p className="text-muted-foreground text-sm max-w-md font-medium leading-relaxed">
-            Deconstruct venture failures using our proprietary neural forensic models. 
-            Identify patterns invisible to the human eye.
+            {t("description")}
           </p>
         </div>
         
         <div className="flex flex-wrap gap-4">
           <div className="glass p-4 min-w-[160px] rounded-2xl hover-lift">
-            <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest mb-1">System Status</div>
+            <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest mb-1">{t("systemStatus")}</div>
             <div className="flex items-center gap-2 text-primary text-xs font-black">
               <span className="h-2 w-2 rounded-full bg-primary animate-ping" />
               HIGH PERFORMANCE
             </div>
           </div>
           <div className="glass p-4 min-w-[160px] rounded-2xl hover-lift">
-            <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest mb-1">Neural Latency</div>
-            <div className="text-accent text-xs font-black">0.004ms / CYCLE</div>
+            <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest mb-1">{t("latency")}</div>
+            <div className="text-accent text-xs font-black">{t("latencyValue")}</div>
           </div>
         </div>
       </div>
@@ -136,7 +137,7 @@ export default function AnalyzerPage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3 text-foreground font-black text-xs uppercase tracking-widest">
                 <div className="h-2 w-2 bg-primary rounded-full shadow-[0_0_10px_var(--primary)]" />
-                Input Narrative
+                {t("inputNarrative")}
               </div>
               <div className="flex gap-2">
                 <div className="h-1 w-8 bg-primary/20 rounded-full" />
@@ -145,7 +146,7 @@ export default function AnalyzerPage() {
             </div>
             
             <Textarea 
-              placeholder="Describe the venture architecture, market conditions, and primary failure vectors..." 
+              placeholder={t("textareaPlaceholder")} 
               className="min-h-[400px] mb-8 bg-black/20 border-white/5 text-foreground font-mono text-sm leading-relaxed p-6 focus:border-primary/30 transition-all resize-none rounded-2xl placeholder:text-muted-foreground/30 shadow-inner"
               value={story}
               onChange={(e) => setStory(e.target.value)}
@@ -164,7 +165,7 @@ export default function AnalyzerPage() {
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-4 uppercase font-black tracking-[0.2em] text-[10px]">
-                  <span>Begin Forensic Sequence</span>
+                  <span>{t("analyzeButton")}</span>
                   <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               )}
@@ -172,8 +173,8 @@ export default function AnalyzerPage() {
           </div>
           
           <div className="glass p-5 rounded-2xl border-white/5 opacity-60 text-[9px] leading-relaxed font-bold tracking-tight text-muted-foreground uppercase">
-            <span className="text-primary mr-2 underline decoration-primary/30">System Protocol:</span>
-            By initiating this sequence, you acknowledge that the neural engine will perform high-intensity pattern matching across 40M+ data points. Results are deterministic and non-reversible.
+            <span className="text-primary mr-2 underline decoration-primary/30">{t("systemProtocol")}:</span>
+            {t("systemProtocolDesc")}
           </div>
         </div>
 
@@ -184,10 +185,10 @@ export default function AnalyzerPage() {
               <div className="flex justify-between items-center border-b border-white/5 pb-6">
                 <div className="flex items-center gap-3">
                   <Activity className="h-5 w-5 text-accent animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Analysis Output Stream</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">{t("outputStream")}</span>
                 </div>
                 <Button variant="outline" size="sm" className="h-10 rounded-full border-white/10 text-[10px] uppercase font-black tracking-widest hover:bg-white/5 gap-3 px-6 transition-all" onClick={downloadReport}>
-                  <Download className="h-3 w-3" /> Secure Export
+                  <Download className="h-3 w-3" /> {t("secureExport")}
                 </Button>
               </div>
 
@@ -200,7 +201,7 @@ export default function AnalyzerPage() {
                   <div className="h-12 w-12 bg-accent/10 rounded-2xl flex items-center justify-center border border-accent/20">
                     <ShieldAlert className="h-6 w-6" />
                   </div>
-                  <h3 className="text-sm font-black uppercase tracking-[0.3em]">Forensic Summary</h3>
+                  <h3 className="text-sm font-black uppercase tracking-[0.3em]">{t("forensicSummary")}</h3>
                 </div>
                 <p className="text-foreground text-3xl font-black leading-[1.1] mb-10 tracking-tighter">
                   {analysis.forensic_summary}
@@ -209,7 +210,7 @@ export default function AnalyzerPage() {
                 <div className="grid grid-cols-2 gap-10 pt-10 border-t border-white/5">
                   <div className="space-y-4">
                     <div className="text-[9px] text-muted-foreground uppercase font-black tracking-widest flex items-center gap-2">
-                      <Search className="h-3 w-3 text-primary" /> Market Sentiment
+                      <Search className="h-3 w-3 text-primary" /> {t("marketSentiment")}
                     </div>
                     <div className="text-sm font-bold bg-primary/5 border border-primary/10 rounded-xl p-4 leading-relaxed">
                       {analysis.market_sentiment}
@@ -217,7 +218,7 @@ export default function AnalyzerPage() {
                   </div>
                   <div className="space-y-4">
                     <div className="text-[9px] text-muted-foreground uppercase font-black tracking-widest flex items-center gap-2">
-                      <Globe className="h-3 w-3 text-accent" /> Competitor Load
+                      <Globe className="h-3 w-3 text-accent" /> {t("competitorLoad")}
                     </div>
                     <div className="text-sm font-bold bg-accent/5 border border-accent/10 rounded-xl p-4 leading-relaxed">
                       {analysis.competitor_dynamics}
@@ -230,7 +231,7 @@ export default function AnalyzerPage() {
               <div className="grid md:grid-cols-2 gap-10">
                 <div className="glass p-8 rounded-3xl space-y-8">
                   <div className="flex items-center gap-3 text-foreground text-xs font-black uppercase tracking-widest mb-2">
-                    <Layers className="h-4 w-4 text-primary" /> Root Cause Vectors
+                    <Layers className="h-4 w-4 text-primary" /> {t("rootCauseVectors")}
                   </div>
                   <div className="space-y-8">
                     {Object.entries(analysis.root_cause_analysis).map(([cause, percent]) => (
@@ -251,12 +252,12 @@ export default function AnalyzerPage() {
                 </div>
 
                 <div className="glass p-10 rounded-3xl flex flex-col items-center justify-center text-center group">
-                  <div className="text-[9px] text-muted-foreground uppercase mb-10 font-black tracking-[0.5em] group-hover:text-accent transition-colors">Risk Index</div>
+                  <div className="text-[9px] text-muted-foreground uppercase mb-10 font-black tracking-[0.5em] group-hover:text-accent transition-colors">{t("riskIndex")}</div>
                   <div className="relative">
                     <div className="h-40 w-40 rounded-full border border-white/5 flex items-center justify-center bg-white/[0.02]">
                       <div className="flex flex-col items-center">
                         <span className="text-6xl font-black text-foreground tracking-tighter">{analysis.risk_score}</span>
-                        <span className="text-[10px] text-muted-foreground font-black tracking-widest mt-1 uppercase">Points</span>
+                        <span className="text-[10px] text-muted-foreground font-black tracking-widest mt-1 uppercase">{t("points")}</span>
                       </div>
                     </div>
                     <svg className="absolute inset-0 h-40 w-40 -rotate-90 scale-110">
@@ -280,7 +281,7 @@ export default function AnalyzerPage() {
                     </svg>
                   </div>
                   <div className="mt-10 px-6 py-2 bg-accent/10 border border-accent/20 rounded-full text-[10px] text-accent font-black uppercase tracking-[0.2em]">
-                    Threat: {Number(analysis.risk_score) > 7 ? 'CRITICAL' : 'MODERATE'}
+                    Threat: {Number(analysis.risk_score) > 7 ? t("critical") : t("moderate")}
                   </div>
                 </div>
               </div>
@@ -291,7 +292,7 @@ export default function AnalyzerPage() {
                   <div className="h-12 w-12 bg-primary/10 rounded-2xl flex items-center justify-center border border-primary/20">
                     <Zap className="h-6 w-6" />
                   </div>
-                  <h3 className="text-sm font-black uppercase tracking-[0.3em]">Remediation Protocols</h3>
+                  <h3 className="text-sm font-black uppercase tracking-[0.3em]">{t("remediationProtocols")}</h3>
                 </div>
                 <div className="space-y-8">
                   {analysis.recommendations.map((rec: string, i: number) => (
@@ -325,8 +326,8 @@ export default function AnalyzerPage() {
                        <div className="h-full bg-gradient-to-r from-primary to-accent animate-progress-linear shadow-[0_0_10px_var(--primary)]" />
                      </div>
                      <div className="flex justify-between text-[8px] text-muted-foreground uppercase font-black tracking-widest opacity-50">
-                       <span>Secure Connection Established</span>
-                       <span>Processing...</span>
+                       <span>{t("secureConnection")}</span>
+                       <span>{t("processing")}</span>
                      </div>
                    </div>
                  </div>
@@ -336,9 +337,9 @@ export default function AnalyzerPage() {
                     <Brain className="h-12 w-12 text-primary/30 group-hover:text-primary transition-colors" />
                   </div>
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-foreground uppercase tracking-[0.2em]">Awaiting Uplink</h3>
+                    <h3 className="text-xl font-black text-foreground uppercase tracking-[0.2em]">{t("awaitingUplink")}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed font-medium">
-                      Initialize deep forensic analysis by providing venture architecture in the primary input terminal.
+                      {t("awaitingUplinkDesc")}
                     </p>
                   </div>
                   <div className="flex gap-1.5 justify-center">

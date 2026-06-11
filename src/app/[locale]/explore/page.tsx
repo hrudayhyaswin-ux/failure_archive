@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { getFailures, Failure } from "@/lib/api";
 import { Search, ArrowRight } from "lucide-react";
 
 export default function ExplorePage() {
+  const t = useTranslations("Explore");
   const [failures, setFailures] = useState<Failure[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,10 +21,10 @@ export default function ExplorePage() {
       })
       .catch((err) => {
         console.error(err);
-        setError(`Failed to connect to backend. Error: ${err.message}`);
+        setError(t("error", { error: err.message }));
         setLoading(false);
       });
-  }, []);
+  }, [t]);
 
   const filteredFailures = failures.filter(f => 
     f.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -34,14 +36,14 @@ export default function ExplorePage() {
     <div className="container mx-auto py-10 px-4">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
         <div>
-          <h1 className="text-4xl font-bold text-foreground mb-2">Explore Failures</h1>
-          <p className="text-muted-foreground">Browse real-world failure cases and insights.</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("description")}</p>
         </div>
         <div className="relative w-full md:w-96">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <input 
             type="text" 
-            placeholder="Search by name, industry or category..." 
+            placeholder={t("searchPlaceholder")}
             className="w-full pl-10 pr-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 bg-background text-foreground"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -82,7 +84,7 @@ export default function ExplorePage() {
               
               <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 mb-1">Sector</span>
+                  <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 mb-1">{t("sector")}</span>
                   <span className="text-xs font-bold text-foreground/80 tracking-tight">{failure.industry}</span>
                 </div>
                 
@@ -100,7 +102,7 @@ export default function ExplorePage() {
 
       {!loading && filteredFailures.length === 0 && (
         <div className="text-center py-20">
-          <p className="text-muted-foreground">No failures found matching your search.</p>
+          <p className="text-muted-foreground">{t("noResults")}</p>
         </div>
       )}
     </div>
