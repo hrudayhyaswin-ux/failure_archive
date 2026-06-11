@@ -1,0 +1,43 @@
+{
+  "Navbar": {
+    "explore": "Explore",
+    "analyzer": "AI Analyzer",
+    "dashboard": "Dashboard",
+    "submit": "Submit",
+    "accessSystem": "Access System",
+    "initialize": "Initialize",
+    "title": "Failure Archive",
+    "subtitle": "Intelligence Suite"
+  },
+  "Home": {
+    "heroKicker": "The Intelligence of Failure",
+    "heroTitle": "Master the Art of Strategic Resilience",
+    "heroCopy": "The world's most sophisticated repository of business and product failures. Decode the past to engineer a bulletproof future with proprietary AI insights.",
+    "exploreButton": "Explore The Archive",
+    "analyzerButton": "Run AI Intelligence",
+    "stats": {
+      "cases": "Archived Cases",
+      "industries": "Global Industries",
+      "insights": "AI Insights",
+      "conversion": "Success Conversion"
+    },
+    "featuresTitle": "Designed for Modern Founders",
+    "featuresCopy": "Our platform provides the analytical depth required to navigate the complexities of modern entrepreneurship.",
+    "features": {
+      "repository": {
+        "title": "Deep Repository",
+        "desc": "Every failure documented with forensic precision, covering finances, team dynamics, and market conditions."
+      },
+      "analysis": {
+        "title": "Neural Analysis",
+        "desc": "Our proprietary AI models extract non-obvious patterns from failure stories to provide predictive guidance."
+      },
+      "mitigation": {
+        "title": "Risk Mitigation",
+        "desc": "Turn your current strategy into a stress-tested model using data from failures in your specific vertical."
+      }
+    },
+    "vision": "The only real mistake is the one from which we learn nothing.",
+    "visionAuthor": "Henry Ford • Engineering Future Success"
+  }
+}
