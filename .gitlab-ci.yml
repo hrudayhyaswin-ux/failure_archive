@@ -41,14 +41,33 @@ dependency_audit_backend:
 
 # --- Lint Stage ---
 
-backend_lint:
+ruff:
   stage: lint
   image: python:3.11-slim
   script:
-    - pip install ruff mypy pylint bandit
+    - pip install ruff
     - ruff check backend/app
+    - ruff format --check backend/app
+
+mypy:
+  stage: lint
+  image: python:3.11-slim
+  script:
+    - pip install mypy
     - mypy backend/app
+
+pylint:
+  stage: lint
+  image: python:3.11-slim
+  script:
+    - pip install pylint
     - pylint --rcfile=.pylintrc backend/app
+
+bandit:
+  stage: lint
+  image: python:3.11-slim
+  script:
+    - pip install bandit
     - bandit -c pyproject.toml -r backend/app
 
 frontend_lint:
