@@ -1,7 +1,6 @@
 # Deploying Failure Archive Backend to Hugging Face Spaces
 
 To host your backend on Hugging Face, follow these steps:
-
 ### 1. Create a New Space
 1. Go to [Hugging Face Spaces](https://huggingface.co/spaces) and click **"Create new Space"**.
 2. Give your space a name (e.g., `failure-archive-backend`).
