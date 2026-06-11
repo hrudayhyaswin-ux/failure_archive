@@ -1,4 +1,25 @@
 repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.2
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: npm-audit
+        name: npm audit
+        entry: npm audit --audit-level=high
+        language: system
+        files: package.json
+        pass_filenames: false
+
+      - id: pip-audit
+        name: pip-audit
+        entry: pip-audit
+        language: system
+        files: requirements.txt
+        pass_filenames: false
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:

@@ -12,6 +12,7 @@
     "biome": "biome check .",
     "knip": "knip",
     "oxlint": "oxlint",
+    "audit": "npm audit --audit-level=high",
     "prepare": "husky"
   },
   "dependencies": {

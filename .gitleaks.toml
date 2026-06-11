@@ -1,0 +1,14 @@
+# Gitleaks configuration for Failure Archive
+[allowlist]
+description = "Allowlist for Failure Archive"
+paths = [
+    "package-lock.json",
+    "venv/",
+    ".venv/",
+    "node_modules/"
+]
+
+[[rules]]
+description = "Potential API Key"
+regex = '''(?i)(api_key|secret|password|token)[-|_]?\w*['|\"]\s*[:|=]\s*['|\"]\w+['|\"]'''
+severity = "error"
