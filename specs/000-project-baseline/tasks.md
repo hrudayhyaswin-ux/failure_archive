@@ -6,15 +6,18 @@
 - [x] T-101: Initialize FastAPI project structure.
 - [x] T-102: Define SQLAlchemy models for Failure and Analysis.
 - [x] T-103: Implement forensic analysis endpoint with neural logic.
-- [ ] T-104: Implement unit tests for analysis deterministic outputs.
-- [ ] T-105: Add API documentation (Swagger/ReDoc) refinement.
+- [x] T-104: Implement unit tests for analysis deterministic outputs.
+- [x] T-105: Add API documentation (Swagger/ReDoc) refinement.
+- [x] T-106: Refactor backend logging and add model docstrings.
 
 ## Phase 2: Intelligence Suite (Frontend)
 - [x] T-201: Setup Next.js with Tailwind v4 and Shadcn.
 - [x] T-202: Implement Intelligence Analyzer HUD (`/analyzer`).
 - [x] T-203: Implement Case Archive Exploration (`/explore`).
 - [x] T-204: Fix scroll lock issues caused by scanline utility.
-- [ ] T-205: Implement user dashboard for saved forensic reports.
+- [x] T-205: Implement Legal and Security architecture pages.
+- [x] T-206: Refine SEO metadata and utility functions.
+- [ ] T-207: Implement user dashboard for saved forensic reports.
 
 ## Phase 3: Validation & Deployment
 - [x] T-301: Deploy backend to Hugging Face Spaces.

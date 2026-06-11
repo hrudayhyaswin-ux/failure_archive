@@ -26,3 +26,6 @@ typing-inspection
 typing_extensions
 email-validator
 google-genai
+pytest
+pytest-asyncio
+httpx

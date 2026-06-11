@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Failure Archive | Neural Forensic Intelligence",
-  description: "Advanced intelligence platform for analyzing and learning from global venture failures.",
+  title: "Failure Archive | The Intelligence of Failure",
+  description: "The world's most comprehensive database of business and product failures, powered by AI.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen bg-background text-foreground selection:bg-primary/20 overflow-y-auto`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen bg-background text-foreground selection:bg-primary/20`}>
         <Navbar />
         <main>
           {children}

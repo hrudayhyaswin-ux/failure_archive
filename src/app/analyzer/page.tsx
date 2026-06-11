@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { analyzeFailure } from "@/lib/api";
+import { AxiosError } from "axios";
+import { analyzeFailure, FailureAnalysis } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   Brain, 
-  Terminal, 
-  Cpu, 
   Layers, 
   Activity, 
   Download, 
@@ -18,15 +16,15 @@ import {
   Globe, 
   Loader2,
   ChevronRight,
-  Database
 } from "lucide-react";
 
 export default function AnalyzerPage() {
   const [story, setStory] = useState("");
-  const [analysis, setAnalysis] = useState<any>(null);
+  const [analysis, setAnalysis] = useState<FailureAnalysis | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loadingStep, setLoadingStep] = useState(0);
+  const [sessionId] = useState(() => Math.random().toString(36).substring(7).toUpperCase());
 
   const steps = [
     "INITIALIZING NEURAL LINK...",
@@ -37,27 +35,31 @@ export default function AnalyzerPage() {
   ];
 
   useEffect(() => {
-    let interval: any;
-    if (loading) {
-      setLoadingStep(0);
-      interval = setInterval(() => {
-        setLoadingStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
-      }, 1500);
+    if (!loading) {
+      return;
     }
+
+    const interval = window.setInterval(() => {
+      setLoadingStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
+    }, 1500);
+
     return () => clearInterval(interval);
-  }, [loading]);
+  }, [loading, steps.length]);
 
   const handleAnalyze = async () => {
     if (!story) return;
     setLoading(true);
     setError(null);
     setAnalysis(null);
+    setLoadingStep(0);
     try {
       const result = await analyzeFailure(story);
       setAnalysis(result);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.response?.data?.detail || err.message || "SYSTEM ERROR: FAILED TO CONNECT TO NEURAL ENGINE");
+      const axiosError = err as AxiosError<{ detail?: string }>;
+      const message = axiosError.response?.data?.detail || axiosError.message || "SYSTEM ERROR: FAILED TO CONNECT TO NEURAL ENGINE";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -71,7 +73,7 @@ export default function AnalyzerPage() {
       `RISK INDEX: ${analysis.risk_score}/10.0\n\n` +
       `MARKET SENTIMENT: ${analysis.market_sentiment}\n` +
       `COMPETITOR DYNAMICS: ${analysis.competitor_dynamics}\n\n` +
-      `STRATEGIC RECOMMENDATIONS:\n${analysis.recommendations.map((r: any, i: number) => `> [PROTOCOL ${i+1}] ${r}`).join('\n')}`;
+      `STRATEGIC RECOMMENDATIONS:\n${analysis.recommendations.map((r, i) => `> [PROTOCOL ${i+1}] ${r}`).join('\n')}`;
     
     const blob = new Blob([content], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
@@ -231,7 +233,7 @@ export default function AnalyzerPage() {
                     <Layers className="h-4 w-4 text-primary" /> Root Cause Vectors
                   </div>
                   <div className="space-y-8">
-                    {Object.entries(analysis.root_cause_analysis).map(([cause, percent]: any) => (
+                    {Object.entries(analysis.root_cause_analysis).map(([cause, percent]) => (
                       <div key={cause} className="group/item">
                         <div className="flex justify-between items-end mb-3">
                           <span className="text-[10px] uppercase text-muted-foreground font-black tracking-widest group-hover/item:text-primary transition-colors">{cause}</span>
@@ -358,7 +360,7 @@ export default function AnalyzerPage() {
           <span className="opacity-40">TLS v1.3 AES-256</span>
         </div>
         <div className="flex items-center gap-6">
-          <div className="hidden sm:block">Session: NF-{Math.random().toString(36).substring(7).toUpperCase()} • {new Date().toLocaleTimeString()}</div>
+          <div className="hidden sm:block">Session: NF-{sessionId}</div>
           <div className="text-primary/60">Neural v4.0.2</div>
         </div>
       </div>

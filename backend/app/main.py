@@ -2,6 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import failures, submissions, analysis
 
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 app = FastAPI(title="Failure Archive API")
 
 @app.on_event("startup")
@@ -10,9 +16,9 @@ def startup_event():
     try:
         from .database import engine, Base
         Base.metadata.create_all(bind=engine)
-        print("Database initialized successfully")
+        logger.info("Database initialized successfully")
     except Exception as e:
-        print(f"Database initialization failed: {e}")
+        logger.error(f"Database initialization failed: {e}")
 
 # CORS setup
 app.add_middleware(

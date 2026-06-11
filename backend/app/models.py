@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 from .database import Base
 
 class User(Base):
+    """Represents a system user with authentication and role-based access."""
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -17,6 +18,7 @@ class User(Base):
     submissions = relationship("Submission", back_populates="user")
 
 class Failure(Base):
+    """Represents a documented business failure case study."""
     __tablename__ = "failures"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -34,6 +36,7 @@ class Failure(Base):
     analysis = relationship("AIAnalysis", back_populates="failure", uselist=False)
 
 class AIAnalysis(Base):
+    """Represents the AI-generated forensic report for a specific failure."""
     __tablename__ = "ai_analysis"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -45,6 +48,7 @@ class AIAnalysis(Base):
     failure = relationship("Failure", back_populates="analysis")
 
 class Submission(Base):
+    """Represents a user-submitted failure case for review."""
     __tablename__ = "submissions"
 
     id = Column(Integer, primary_key=True, index=True)

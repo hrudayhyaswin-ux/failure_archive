@@ -5,7 +5,9 @@
 Failure Archive is an AI-powered platform designed to help individuals, entrepreneurs, students, researchers, and organizations learn from real-world failures. Instead of focusing only on success stories, the platform analyzes failed startups, products, businesses, technologies, policies, and careers to uncover the reasons behind their failure and provide actionable insights.
 
 The goal is to create a centralized knowledge base where users can understand why something failed, identify warning signs, discover similar cases, and learn how similar failures can be avoided in the future.
+## working website 
 
+https://failure-archive-gray.vercel.app
 ---
 
 ## Problem Statement
@@ -201,6 +203,39 @@ Analytics & Reporting
 | title       | String  |
 | description | Text    |
 | status      | String  |
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Python 3.10+
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/hrudayhyaswin-ux/failure_archive.git
+   cd failure_archive
+   ```
+
+2. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. **Backend Setup**
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   uvicorn main:app --reload
+   ```
 
 ---
 
