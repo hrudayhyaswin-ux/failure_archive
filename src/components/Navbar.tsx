@@ -45,7 +45,7 @@ export default function Navbar() {
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                href={item.href as any}
+                href={item.href as string}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary hover:shadow-[0_8px_24px_rgba(126,87,255,0.18)]",
                   isActive(item.href)
@@ -95,7 +95,7 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <Link
                   key={item.href}
-                  href={item.href as any}
+                  href={item.href as string}
                   onClick={() => setIsMobileOpen(false)}
                   className={cn(
                     "rounded-lg px-4 py-3 text-[11px] font-black uppercase tracking-[0.18em] transition-all duration-300 ease-out",
