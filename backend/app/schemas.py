@@ -65,3 +65,6 @@ class AIAnalysisResponse(BaseModel):
     root_cause_analysis: dict # e.g. {"Product-Market Fit": 45, ...}
     risk_score: float
     recommendations: List[str]
+    market_sentiment: str
+    competitor_dynamics: str
+    forensic_summary: str

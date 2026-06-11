@@ -61,7 +61,7 @@ def analyze_failure(request: schemas.AIAnalysisRequest):
         try:
             client = get_gemini_client()
             response = client.models.generate_content(
-                model="gemini-3.5-flash",
+                model="gemini-1.5-flash",
                 contents=prompt,
                 config={
                     'response_mime_type': 'application/json'
