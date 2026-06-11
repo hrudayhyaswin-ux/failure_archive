@@ -1,0 +1,85 @@
+stages:
+  - security
+  - lint
+  - test
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  paths:
+    - .cache/pip
+    - .npm
+    - node_modules
+    - venv
+
+# --- Security Stage ---
+
+secret_scanning:
+  stage: security
+  image:
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+  script:
+    - gitleaks detect --source . -v --config .gitleaks.toml
+  allow_failure: true
+
+dependency_audit_frontend:
+  stage: security
+  image: node:20-slim
+  script:
+    - npm audit --audit-level=high
+
+dependency_audit_backend:
+  stage: security
+  image: python:3.11-slim
+  script:
+    - pip install pip-audit
+    - pip-audit -r backend/requirements.txt
+
+# --- Lint Stage ---
+
+backend_lint:
+  stage: lint
+  image: python:3.11-slim
+  script:
+    - pip install ruff mypy pylint bandit
+    - ruff check backend/app
+    - mypy backend/app
+    - pylint --rcfile=.pylintrc backend/app
+    - bandit -c pyproject.toml -r backend/app
+
+frontend_lint:
+  stage: lint
+  image: node:20-slim
+  script:
+    - npm install
+    - npm run lint
+    - npx prettier --check .
+    - npm run biome
+    - npm run oxlint
+
+# --- Test Stage ---
+
+backend_test:
+  stage: test
+  image: python:3.11-slim
+  script:
+    - pip install -r backend/requirements.txt
+    - pytest --cov=backend/app --cov-report=xml --cov-report=term
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+frontend_test:
+  stage: test
+  image: node:20-slim
+  script:
+    - npm install
+    - npm test
+  artifacts:
+    paths:
+      - coverage/
