@@ -23,11 +23,6 @@ export default function Navbar() {
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
-  const toggleLanguage = () => {
-    const nextLocale = locale === "en" ? "te" : "en";
-    router.replace(pathname, { locale: nextLocale });
-  };
-
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-background/70 shadow-[0_1px_0_rgba(255,255,255,0.06),0_10px_35px_rgba(86,45,170,0.18)] backdrop-blur-2xl backdrop-saturate-150 before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-primary/60 before:to-transparent after:pointer-events-none after:absolute after:inset-x-8 after:bottom-[-1px] after:h-px after:bg-primary/35 after:blur-sm">
       <div className="container mx-auto flex min-h-20 max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:flex-nowrap md:gap-8 md:py-0">
@@ -59,14 +54,22 @@ export default function Navbar() {
           </div>
         </div>
         <div className="hidden items-center gap-3 md:flex">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="rounded-full px-3 text-[10px] font-black uppercase tracking-widest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary"
-            onClick={toggleLanguage}
-          >
-            <Globe className="mr-2 h-4 w-4" /> {locale === "en" ? "Telugu" : "English"}
-          </Button>
+          <div className="relative flex items-center">
+            <Globe className="absolute left-3 h-4 w-4 text-primary pointer-events-none" />
+            <select
+              value={locale}
+              onChange={(e) => router.replace(pathname, { locale: e.target.value })}
+              className="appearance-none bg-white/[0.03] border border-white/10 hover:bg-primary/10 hover:border-primary/30 text-primary text-[10px] font-black uppercase tracking-widest rounded-full pl-9 pr-8 py-2 outline-none cursor-pointer transition-all duration-300"
+            >
+              <option value="en" className="bg-background text-foreground">EN</option>
+              <option value="te" className="bg-background text-foreground">తెలుగు</option>
+              <option value="hi" className="bg-background text-foreground">हिन्दी</option>
+              <option value="ta" className="bg-background text-foreground">தமிழ்</option>
+              <option value="kn" className="bg-background text-foreground">ಕನ್ನಡ</option>
+              <option value="ml" className="bg-background text-foreground">മലയാളം</option>
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-primary text-[8px]">▼</div>
+          </div>
           <Button variant="ghost" size="sm" className="rounded-full px-5 text-[10px] font-black uppercase tracking-widest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary" asChild>
             <Link href="/login">{t("accessSystem")}</Link>
           </Button>
@@ -108,14 +111,25 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="grid grid-cols-2 gap-3 pt-2">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary/10 hover:text-primary"
-                  onClick={toggleLanguage}
-                >
-                  <Globe className="mr-2 h-4 w-4" /> {locale === "en" ? "TE" : "EN"}
-                </Button>
+                <div className="relative flex items-center col-span-2">
+                  <Globe className="absolute left-3 h-4 w-4 text-primary pointer-events-none" />
+                  <select
+                    value={locale}
+                    onChange={(e) => {
+                      router.replace(pathname, { locale: e.target.value });
+                      setIsMobileOpen(false);
+                    }}
+                    className="w-full appearance-none bg-white/[0.03] border border-white/10 hover:bg-primary/10 hover:border-primary/30 text-primary text-[10px] font-black uppercase tracking-widest rounded-full pl-9 pr-8 py-2.5 outline-none cursor-pointer transition-all duration-300"
+                  >
+                    <option value="en" className="bg-background text-foreground">English</option>
+                    <option value="te" className="bg-background text-foreground">తెలుగు</option>
+                    <option value="hi" className="bg-background text-foreground">हिन्दी</option>
+                    <option value="ta" className="bg-background text-foreground">தமிழ்</option>
+                    <option value="kn" className="bg-background text-foreground">ಕನ್ನಡ</option>
+                    <option value="ml" className="bg-background text-foreground">മലയാളം</option>
+                  </select>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-primary text-[8px]">▼</div>
+                </div>
                 <Button variant="ghost" size="sm" className="rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary/10 hover:text-primary" asChild>
                   <Link href="/login" onClick={() => setIsMobileOpen(false)}>{t("accessSystem")}</Link>
                 </Button>
@@ -130,4 +144,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
