@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { getFailure, Failure } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Calendar, Building2, Tag, ArrowLeft, Info, Zap, Activity, ShieldAlert, Brain, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function FailureDetailsPage() {
+  const t = useTranslations("ExploreDetails");
   const { id } = useParams();
   const [failure, setFailure] = useState<Failure | null>(null);
   const [loading, setLoading] = useState(true);
@@ -92,9 +94,9 @@ export default function FailureDetailsPage() {
             </div>
             <div className="space-y-16 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-primary/20 before:via-accent/20 before:to-transparent">
               {[
-                { year: failure.year - 2, title: "CAPITAL DEPLOYMENT", desc: "Initial architecture and funding sequence." },
-                { year: failure.year - 1, title: "MARKET FRICTION", desc: "Detected anomalies in market penetration." },
-                { year: failure.year, title: "TERMINAL SHUTDOWN", active: true, desc: "System collapse and asset liquidation." }
+                { year: failure.year - 2, title: t("timelineCapital"), desc: t("timelineCapitalDesc") },
+                { year: failure.year - 1, title: t("timelineMarket"), desc: t("timelineMarketDesc") },
+                { year: failure.year, title: t("timelineTerminal"), active: true, desc: t("timelineTerminalDesc") }
               ].map((item, i) => (
                 <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
                   <div className={`flex items-center justify-center w-12 h-12 rounded-2xl border ${item.active ? 'bg-destructive/20 border-destructive text-destructive shadow-[0_0_20px_rgba(239,68,68,0.3)]' : 'bg-primary/20 border-primary text-primary shadow-[0_0_20px_rgba(99,102,241,0.2)]'} z-10 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-all duration-500 group-hover:scale-125`}>
@@ -140,7 +142,7 @@ export default function FailureDetailsPage() {
                <Activity className="h-4 w-4" /> Predictive Insight
             </div>
             <p className="text-foreground/80 text-sm leading-relaxed mb-10 font-medium">
-              Forensic vectors for <span className="text-foreground font-black">{failure.title}</span> indicate structural <span className="text-primary font-black uppercase tracking-widest">{failure.category} instability</span> during the {failure.year} cycle. 
+              Forensic vectors for <span className="text-foreground font-black">{failure.title}</span>{t("indicateStructural")} <span className="text-primary font-black uppercase tracking-widest">{failure.category} instability</span> during the {failure.year} {t("cycle")}. 
             </p>
             <Button size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-2xl h-16 text-[10px] font-black uppercase tracking-[0.3em] shadow-lg shadow-primary/20 border-none transition-all group" asChild>
               <Link href="/analyzer">
