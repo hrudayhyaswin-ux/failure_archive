@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getFailure, Failure } from "@/lib/api";
+import { translateFailure } from "@/lib/translations";
 import { Button } from "@/components/ui/button";
 import { Calendar, Building2, Tag, ArrowLeft, Info, Zap, Activity, ShieldAlert, Brain, ChevronRight } from "lucide-react";
 import { Link } from "@/i18n/routing";
 
 export default function FailureDetailsPage() {
   const t = useTranslations("ExploreDetails");
+  const locale = useLocale();
   const { id } = useParams();
   const [failure, setFailure] = useState<Failure | null>(null);
   const [loading, setLoading] = useState(true);
@@ -17,11 +19,11 @@ export default function FailureDetailsPage() {
   useEffect(() => {
     if (id) {
       getFailure(Number(id)).then((data) => {
-        setFailure(data);
+        setFailure(translateFailure(data, locale));
         setLoading(false);
       });
     }
-  }, [id]);
+  }, [id, locale]);
 
   if (loading) return (
     <div className="container mx-auto py-40 text-center">

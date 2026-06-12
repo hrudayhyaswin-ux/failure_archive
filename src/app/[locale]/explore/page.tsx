@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getFailures, Failure } from "@/lib/api";
+import { translateFailure } from "@/lib/translations";
 import { Search, ArrowRight } from "lucide-react";
 
 export default function ExplorePage() {
   const t = useTranslations("Explore");
+  const locale = useLocale();
   const [failures, setFailures] = useState<Failure[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,7 +18,8 @@ export default function ExplorePage() {
   useEffect(() => {
     getFailures()
       .then((data) => {
-        setFailures(data);
+        const translatedData = data.map(f => translateFailure(f, locale));
+        setFailures(translatedData);
         setLoading(false);
       })
       .catch((err) => {
@@ -24,7 +27,7 @@ export default function ExplorePage() {
         setError(t("error", { error: err.message }));
         setLoading(false);
       });
-  }, [t]);
+  }, [t, locale]);
 
   const filteredFailures = failures.filter(f => 
     f.title.toLowerCase().includes(search.toLowerCase()) ||

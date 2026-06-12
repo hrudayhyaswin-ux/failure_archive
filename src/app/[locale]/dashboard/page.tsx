@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getFailures, Failure } from "@/lib/api";
+import { translateFailure } from "@/lib/translations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   BarChart, 
@@ -23,15 +24,17 @@ type IndustryDatum = { name: string; count: number };
 
 export default function DashboardPage() {
   const t = useTranslations("Dashboard");
+  const locale = useLocale();
   const [failures, setFailures] = useState<Failure[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getFailures().then((data) => {
-      setFailures(data);
+      const translatedData = data.map(f => translateFailure(f, locale));
+      setFailures(translatedData);
       setLoading(false);
     });
-  }, []);
+  }, [locale]);
 
   const categoryData = failures.reduce<CategoryDatum[]>((acc, f) => {
     const existing = acc.find((item) => item.name === f.category);
