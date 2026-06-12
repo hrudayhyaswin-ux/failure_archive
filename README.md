@@ -1,288 +1,474 @@
 # Failure Archive
-> **AI-Powered Forensic Intelligence Suite**
 
-## Description
-Advanced intelligence platform for analyzing and learning from global venture failures using neural intelligence and deterministic forensic analysis.
+> **AI-Powered Forensic Intelligence Suite for Learning from Real-World Failures**
+
+## 🌐 Live Demo
+
+**Website:** https://failure-archive-gray.vercel.app/en
+
+---
+
+# Overview
 
 ## Learn From Failures Before Making Them
 
-Failure Archive is an AI-powered platform designed to help individuals, entrepreneurs, students, researchers, and organizations learn from real-world failures. Instead of focusing only on success stories, the platform analyzes failed startups, products, businesses, technologies, policies, and careers to uncover the reasons behind their failure and provide actionable insights.
+Failure Archive is an AI-powered intelligence platform designed to transform failure into actionable knowledge. While countless platforms celebrate success stories, Failure Archive focuses on the overlooked side of innovation—the failures that shape industries, careers, products, and organizations.
 
-The goal is to create a centralized knowledge base where users can understand why something failed, identify warning signs, discover similar cases, and learn how similar failures can be avoided in the future.
-## working website 
+The platform enables entrepreneurs, students, researchers, professionals, and decision-makers to study documented failures, uncover hidden patterns, identify warning signs, and generate data-driven recommendations that help prevent similar mistakes.
 
-https://failure-archive-gray.vercel.app/en
+By combining structured archives, deterministic forensic analysis, and artificial intelligence, Failure Archive creates a centralized knowledge repository dedicated to one mission:
+
+**Helping people make better decisions by learning from the failures of others.**
+
 ---
 
-## Problem Statement
+# Problem Statement
 
-Thousands of platforms document success stories, but very few systematically analyze failures.
+Modern knowledge ecosystems overwhelmingly focus on success stories while neglecting the lessons embedded in failure.
 
 As a result:
 
-* People repeat the same mistakes.
-* Entrepreneurs launch products without learning from previous failures.
-* Students and professionals struggle to identify the root causes of their setbacks.
-* Organizations lose valuable lessons from failed projects.
+* Entrepreneurs repeat avoidable mistakes.
+* Startups launch without understanding historical risks.
+* Students struggle to extract meaningful insights from setbacks.
+* Organizations lose institutional knowledge from failed initiatives.
+* Researchers lack centralized datasets dedicated to failure analysis.
 
-Failure Archive addresses this problem by creating a searchable database of failures combined with AI-driven analysis and recommendations.
+Failure Archive addresses this gap by providing an intelligent system that documents failures, analyzes contributing factors, and converts them into practical learning experiences.
 
 ---
 
-## Features
+# Key Objectives
 
-### Failure Database
+* Build a structured archive of real-world failures.
+* Promote evidence-based learning.
+* Encourage reflective and analytical thinking.
+* Help users recognize early warning signals.
+* Support informed decision-making.
+* Preserve lessons that would otherwise be forgotten.
 
-Explore documented failures across multiple domains:
+---
+
+# Core Features
+
+## Failure Knowledge Repository
+
+Explore curated failures across multiple domains:
 
 * Startups
-* Products
 * Businesses
+* Products
 * Technologies
-* Policies
-* Careers
 * Investments
+* Public Policies
+* Careers
+* Organizational Projects
 
-### AI Failure Analyzer
+Each case study includes:
 
-Users can submit descriptions of failed projects, businesses, or personal experiences and receive:
-
-* Root cause analysis
-* Risk assessment
-* Key failure factors
-* Improvement suggestions
-
-### Similar Failure Detection
-
-The platform identifies failures with similar characteristics and presents patterns and lessons learned.
-
-### Lessons Learned Repository
-
-Every failure includes:
-
-* Root causes
-* Warning signs
+* Background information
 * Timeline of events
+* Root causes
+* Contributing factors
+* Warning indicators
 * Lessons learned
 * Recommendations
 
-### Community Contributions
+---
 
-Users can contribute failure stories and insights to expand the archive.
+## AI Failure Analyzer
 
-### Analytics Dashboard
+Users can submit descriptions of failures and receive AI-generated insights.
 
-Visualize:
+### Analysis Includes
 
-* Most common failure reasons
+* Root Cause Identification
+* Failure Categorization
+* Risk Assessment
+* Contributing Factors
+* Actionable Recommendations
+* Preventive Measures
+
+---
+
+## Similar Failure Detection
+
+The system identifies patterns between failures by comparing characteristics such as:
+
+* Industry
+* Failure reasons
+* Operational decisions
+* Market conditions
+* Strategic mistakes
+
+This enables users to recognize recurring trends and systemic risks.
+
+---
+
+## Interactive Analytics Dashboard
+
+Visualize failure intelligence through dynamic charts and reports.
+
+Dashboard insights include:
+
+* Most common failure causes
 * Industry-wise failure trends
-* Failure category statistics
-* User submissions
+* Category distributions
+* User contribution statistics
+* Historical failure timelines
+* Comparative analyses
 
 ---
 
-## System Architecture
+## Community Contributions
 
-Frontend (Next.js)
-↓
-Backend API (FastAPI)
-↓
-PostgreSQL Database
-↓
-OpenAI API
-↓
-Analytics & Reporting
+The platform encourages collaborative learning.
+
+Users can:
+
+* Submit failure stories
+* Share lessons learned
+* Suggest corrections
+* Expand the archive
+* Participate in collective knowledge building
 
 ---
 
-## Tech Stack
+## Multilingual Accessibility
 
-### Frontend
+Failure Archive supports localization to make learning accessible to diverse audiences.
+
+### Supported Languages
+
+* English
+* Hindi
+* Telugu
+
+Additional regional languages can be integrated in future releases.
+
+---
+
+# System Architecture
+
+```
+                 ┌─────────────────┐
+                 │     Next.js     │
+                 │  Frontend Layer │
+                 └────────┬────────┘
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │   FastAPI API   │
+                 │ Business Logic  │
+                 └────────┬────────┘
+                          │
+          ┌───────────────┼───────────────┐
+          ▼                               ▼
+ ┌─────────────────┐           ┌─────────────────┐
+ │ PostgreSQL DB   │           │   OpenAI API    │
+ │ Failure Records │           │ AI Analysis     │
+ └─────────────────┘           └─────────────────┘
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │ Analytics Layer │
+                 │ Reports & Charts│
+                 └─────────────────┘
+```
+
+---
+
+# Technology Stack
+
+## Frontend
 
 * Next.js
 * TypeScript
 * Tailwind CSS
 * ShadCN UI
 * Recharts
+* Framer Motion
+* next-intl
 
-### Backend
+---
+
+## Backend
 
 * FastAPI
 * SQLAlchemy
+* Pydantic
 * JWT Authentication
+* Uvicorn
 
-### Database
+---
+
+## Database
 
 * PostgreSQL
-
-### AI Integration
-
-* OpenAI API
-
-### Deployment
-
-* Vercel (Frontend)
-* Railway / Render (Backend)
 * Supabase PostgreSQL
 
 ---
 
-## Core Modules
+## Artificial Intelligence
 
-### Authentication Module
-
-* User Registration
-* Login
-* JWT Authentication
-* Role-Based Access Control
-
-### Failure Management Module
-
-* Add Failure
-* Edit Failure
-* Delete Failure
-* View Failure Details
-
-### AI Analysis Module
-
-* Root Cause Detection
-* Failure Categorization
+* OpenAI API
+* Prompt Engineering
+* Failure Classification
 * Recommendation Generation
 
-###Search & Filter Module
+---
 
-* Search by Title
-* Search by Category
-* Search by Industry
-* Search by Keywords
+## Deployment
 
-### Dashboard Module
+### Frontend
 
-* Statistics
-* Charts
-* Reports
+* Vercel
+
+### Backend
+
+* Railway / Render
+
+### Database
+
+* Supabase
 
 ---
 
-## Database Schema
+# Application Modules
 
-### Users
+## Authentication Module
 
-| Field    | Type    |
-| -------- | ------- |
-| id       | Integer |
-| name     | String  |
-| email    | String  |
-| password | String  |
-| role     | String  |
+Features:
 
-### Failures
-
-| Field          | Type    |
-| -------------- | ------- |
-| id             | Integer |
-| title          | String  |
-| category       | String  |
-| description    | Text    |
-| industry       | String  |
-| year           | Integer |
-| failure_reason | Text    |
-| lessons        | Text    |
-
-### AI Reports
-
-| Field      | Type    |
-| ---------- | ------- |
-| id         | Integer |
-| failure_id | Integer |
-| analysis   | Text    |
-| risk_score | Float   |
-
-### User Submissions
-
-| Field       | Type    |
-| ----------- | ------- |
-| id          | Integer |
-| user_id     | Integer |
-| title       | String  |
-| description | Text    |
-| status      | String  |
+* User Registration
+* Secure Login
+* JWT Authentication
+* Session Management
+* Role-Based Access Control
 
 ---
 
-## Getting Started
+## Failure Management Module
 
-### Prerequisites
-- Node.js 18+
-- Python 3.10+
-- Git
+Capabilities:
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/hrudayhyaswin-ux/failure_archive.git
-   cd failure_archive
-   ```
-
-2. **Frontend Setup**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-3. **Backend Setup**
-   ```bash
-   cd backend
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   uvicorn main:app --reload
-   ```
+* Add Failure Records
+* Edit Existing Entries
+* Delete Entries
+* View Detailed Reports
+* Categorize Failures
 
 ---
 
-## Future Enhancements
+## AI Intelligence Module
+
+Functions:
+
+* Root Cause Detection
+* Failure Classification
+* Risk Scoring
+* Recommendation Generation
+* Insight Extraction
+
+---
+
+## Search & Discovery Module
+
+Users can search by:
+
+* Title
+* Category
+* Industry
+* Keywords
+* Year
+* Failure Factors
+
+---
+
+## Dashboard Module
+
+Provides:
+
+* Statistical Insights
+* Interactive Visualizations
+* Trend Analysis
+* Reporting Tools
+
+---
+
+## Localization Module
+
+Supports:
+
+* Language Switching
+* Translation Management
+* Region-Friendly Accessibility
+
+---
+
+# Database Schema
+
+## Users
+
+| Field      | Type      |
+| ---------- | --------- |
+| id         | Integer   |
+| name       | String    |
+| email      | String    |
+| password   | String    |
+| role       | String    |
+| created_at | Timestamp |
+
+---
+
+## Failures
+
+| Field          | Type      |
+| -------------- | --------- |
+| id             | Integer   |
+| title          | String    |
+| category       | String    |
+| description    | Text      |
+| industry       | String    |
+| year           | Integer   |
+| failure_reason | Text      |
+| lessons        | Text      |
+| created_at     | Timestamp |
+
+---
+
+## AI Reports
+
+| Field           | Type    |
+| --------------- | ------- |
+| id              | Integer |
+| failure_id      | Integer |
+| analysis        | Text    |
+| risk_score      | Float   |
+| recommendations | Text    |
+
+---
+
+## User Submissions
+
+| Field        | Type      |
+| ------------ | --------- |
+| id           | Integer   |
+| user_id      | Integer   |
+| title        | String    |
+| description  | Text      |
+| status       | String    |
+| submitted_at | Timestamp |
+
+---
+
+# Getting Started
+
+## Prerequisites
+
+* Node.js 18+
+* Python 3.10+
+* Git
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/hrudayhyaswin-ux/failure_archive.git
+cd failure_archive
+```
+
+---
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+### Backend Setup
+
+```bash
+cd backend
+
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+uvicorn main:app --reload
+```
+
+Backend runs on:
+
+```
+http://localhost:8000
+```
+
+---
+
+# Future Enhancements
 
 * AI Failure Prediction Engine
-* Failure Similarity Graphs
 * Startup Risk Calculator
+* Failure Similarity Network Graphs
 * Business Plan Analyzer
-* Career Failure Assessment
-* Recommendation Engine
+* Career Decision Assessment
+* Personalized Learning Recommendations
+* Exportable Reports
 * Public API Access
+* Advanced Search Filters
+* Mobile Application Support
+* Additional Language Integrations
 
 ---
 
-## Project Goals
-
-* Create awareness about learning from failures.
-* Help users make informed decisions.
-* Build a structured repository of failure knowledge.
-* Encourage data-driven problem solving.
-* Promote continuous learning and improvement.
-
----
-
-## Expected Outcomes
+# Expected Outcomes
 
 Users will be able to:
 
 * Analyze real-world failures.
-* Understand root causes.
-* Learn valuable lessons.
-* Avoid repeating common mistakes.
-* Improve decision-making skills.
+* Discover hidden patterns.
+* Identify warning signs early.
+* Learn from documented mistakes.
+* Improve strategic thinking.
+* Make better decisions.
+* Reduce the likelihood of repeating common failures.
 
 ---
 
-## Contributors
+# Contributors
 
-Project developed as an academic and portfolio project focused on applying Artificial Intelligence, Full-Stack Development, Data Analysis, and Knowledge Management concepts.
+Developed as an academic and portfolio project demonstrating applications of:
+
+* Artificial Intelligence
+* Full-Stack Development
+* Data Analytics
+* Knowledge Management
+* Human-Centered Design
 
 ---
 
-## License
+# License
 
-This project is developed for educational and research purposes.
+This project is intended for educational, research, and portfolio purposes.
+
+© 2026 Failure Archive. All rights reserved.
