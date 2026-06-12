@@ -11,7 +11,7 @@ Failure Archive is an AI-powered platform designed to help individuals, entrepre
 The goal is to create a centralized knowledge base where users can understand why something failed, identify warning signs, discover similar cases, and learn how similar failures can be avoided in the future.
 ## working website 
 
-https://failure-archive-gray.vercel.app
+https://failure-archive-gray.vercel.app/en
 ---
 
 ## Problem Statement
