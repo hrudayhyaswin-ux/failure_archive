@@ -5,7 +5,13 @@ import { submitFailure } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { CheckCircle2, UploadCloud } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -35,10 +41,10 @@ export default function SubmitPage() {
       <div className="container mx-auto py-20 px-4 flex flex-col items-center justify-center">
         <div className="bg-teal-50 border border-teal-100 p-10 rounded-2xl text-center max-w-md">
           <CheckCircle2 className="h-16 w-16 text-teal-600 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-teal-900 mb-2">{t("successTitle")}</h2>
-          <p className="text-teal-700 mb-8">
-            {t("successDesc")}
-          </p>
+          <h2 className="text-2xl font-bold text-teal-900 mb-2">
+            {t("successTitle")}
+          </h2>
+          <p className="text-teal-700 mb-8">{t("successDesc")}</p>
           <div className="flex flex-col gap-3">
             <Button asChild>
               <Link href="/explore">{t("exploreOther")}</Link>
@@ -68,17 +74,17 @@ export default function SubmitPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-medium">{t("titleLabel")}</label>
-              <Input 
+              <Input
                 placeholder={t("titlePlaceholder")}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
               />
             </div>
-            
+
             <div className="space-y-2">
               <label className="text-sm font-medium">{t("descLabel")}</label>
-              <Textarea 
+              <Textarea
                 placeholder={t("descPlaceholder")}
                 className="min-h-[200px]"
                 value={description}
@@ -92,7 +98,11 @@ export default function SubmitPage() {
               <p className="text-sm">{t("uploadLabel")}</p>
             </div>
 
-            <Button type="submit" className="w-full h-12 text-lg" disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full h-12 text-lg"
+              disabled={loading}
+            >
               {loading ? t("submitting") : t("submitButton")}
             </Button>
           </form>

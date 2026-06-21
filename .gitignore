@@ -25,3 +25,5 @@ dev-server*.log
 out/
 build/
 .vercel/
+coverage/
+tsconfig.tsbuildinfo

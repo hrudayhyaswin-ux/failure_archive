@@ -5,17 +5,17 @@ import { useTranslations, useLocale } from "next-intl";
 import { getFailures, Failure } from "@/lib/api";
 import { translateFailure } from "@/lib/translations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer, 
-  PieChart, 
-  Pie, 
-  Cell 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
 } from "recharts";
 
 const COLORS = ["#3b82f6", "#8b5cf6", "#14b8a6", "#f59e0b", "#ef4444"];
@@ -30,7 +30,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     getFailures().then((data) => {
-      const translatedData = data.map(f => translateFailure(f, locale));
+      const translatedData = data.map((f) => translateFailure(f, locale));
       setFailures(translatedData);
       setLoading(false);
     });
@@ -60,13 +60,17 @@ export default function DashboardPage() {
     <div className="container mx-auto py-10 px-4">
       <div className="mb-8 flex flex-col gap-2">
         <h1 className="text-4xl font-bold text-slate-900">{t("title")}</h1>
-        {loading && <p className="text-sm text-muted-foreground">{t("loading")}</p>}
+        {loading && (
+          <p className="text-sm text-muted-foreground">{t("loading")}</p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">{t("totalFailures")}</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">
+              {t("totalFailures")}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">{failures.length}</div>
@@ -74,17 +78,22 @@ export default function DashboardPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">{t("topCategory")}</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">
+              {t("topCategory")}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">
-              {[...categoryData].sort((a, b) => b.value - a.value)[0]?.name || "N/A"}
+              {[...categoryData].sort((a, b) => b.value - a.value)[0]?.name ||
+                "N/A"}
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">{t("lessonsLearned")}</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider">
+              {t("lessonsLearned")}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">{failures.length * 3}+</div>
@@ -122,13 +131,18 @@ export default function DashboardPage() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name} ${(percent ? percent * 100 : 0).toFixed(0)}%`}
+                  label={({ name, percent }) =>
+                    `${name} ${(percent ? percent * 100 : 0).toFixed(0)}%`
+                  }
                   outerRadius={130}
                   fill="#8884d8"
                   dataKey="value"
                 >
                   {categoryData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
                   ))}
                 </Pie>
                 <Tooltip />
@@ -144,15 +158,25 @@ export default function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {failures.slice(-3).reverse().map((f) => (
-              <div key={f.id} className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0">
-                <div>
-                  <div className="font-bold">{f.title}</div>
-                  <div className="text-sm text-slate-500">{f.industry} • {f.year}</div>
+            {failures
+              .slice(-3)
+              .reverse()
+              .map((f) => (
+                <div
+                  key={f.id}
+                  className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0"
+                >
+                  <div>
+                    <div className="font-bold">{f.title}</div>
+                    <div className="text-sm text-slate-500">
+                      {f.industry} • {f.year}
+                    </div>
+                  </div>
+                  <div className="text-sm font-medium text-primary">
+                    {t("viewDetails")}
+                  </div>
                 </div>
-                <div className="text-sm font-medium text-primary">{t("viewDetails")}</div>
-              </div>
-            ))}
+              ))}
           </div>
         </CardContent>
       </Card>

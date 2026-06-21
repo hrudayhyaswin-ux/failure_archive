@@ -1,10 +1,13 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, Float, DateTime
+from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+
 from .database import Base
+
 
 class User(Base):
     """Represents a system user with authentication and role-based access."""
+
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -17,8 +20,10 @@ class User(Base):
     failures = relationship("Failure", back_populates="creator")
     submissions = relationship("Submission", back_populates="user")
 
+
 class Failure(Base):
     """Represents a documented business failure case study."""
+
     __tablename__ = "failures"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -35,27 +40,31 @@ class Failure(Base):
     creator = relationship("User", back_populates="failures")
     analysis = relationship("AIAnalysis", back_populates="failure", uselist=False)
 
+
 class AIAnalysis(Base):
     """Represents the AI-generated forensic report for a specific failure."""
+
     __tablename__ = "ai_analysis"
 
     id = Column(Integer, primary_key=True, index=True)
     failure_id = Column(Integer, ForeignKey("failures.id"))
-    analysis_json = Column(Text) # JSON string of analysis
+    analysis_json = Column(Text)  # JSON string of analysis
     risk_score = Column(Float)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     failure = relationship("Failure", back_populates="analysis")
 
+
 class Submission(Base):
     """Represents a user-submitted failure case for review."""
+
     __tablename__ = "submissions"
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     title = Column(String)
     description = Column(Text)
-    status = Column(String, default="pending") # pending, approved, rejected
+    status = Column(String, default="pending")  # pending, approved, rejected
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     user = relationship("User", back_populates="submissions")

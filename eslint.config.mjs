@@ -10,9 +10,13 @@ const eslintConfig = defineConfig([
     // Default ignores of eslint-config-next:
     ".next/**",
     "frontend/**",
+    "coverage/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "add_details_keys.js",
+    "patch_details.js",
+    "patch_i18n.js",
   ]),
 ]);
 

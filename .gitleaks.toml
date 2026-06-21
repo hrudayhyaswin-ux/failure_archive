@@ -3,12 +3,14 @@
 description = "Allowlist for Failure Archive"
 paths = [
     "package-lock.json",
+    "messages/",
     "venv/",
     ".venv/",
     "node_modules/"
 ]
 
 [[rules]]
+id = "generic-api-credential"
 description = "Potential API Key"
 regex = '''(?i)(api_key|secret|password|token)[-|_]?\w*['|\"]\s*[:|=]\s*['|\"]\w+['|\"]'''
 severity = "error"

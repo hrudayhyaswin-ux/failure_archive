@@ -1,14 +1,17 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from typing import List
+
 from app import models, schemas
 from app.database import get_db
 
 router = APIRouter()
 
+
 @router.post("/", response_model=schemas.Submission)
-def create_submission(submission: schemas.SubmissionCreate, db: Session = Depends(get_db)):
-    # For now, we'll use a dummy user_id 1. 
+def create_submission(
+    submission: schemas.SubmissionCreate, db: Session = Depends(get_db)
+):
+    # For now, we'll use a dummy user_id 1.
     # In a real app, this would come from the JWT token.
     db_submission = models.Submission(**submission.dict(), user_id=1)
     db.add(db_submission)
@@ -16,6 +19,7 @@ def create_submission(submission: schemas.SubmissionCreate, db: Session = Depend
     db.refresh(db_submission)
     return db_submission
 
-@router.get("/", response_model=List[schemas.Submission])
+
+@router.get("/", response_model=list[schemas.Submission])
 def get_submissions(db: Session = Depends(get_db)):
     return db.query(models.Submission).all()

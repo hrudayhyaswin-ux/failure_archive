@@ -48,7 +48,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^2.0.0",
+    "@vitest/coverage-v8": "^4.1.9",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
     "husky": "^9.0.11",
@@ -58,8 +58,9 @@
     "prettier": "^3.1.0",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "vite": "^7.3.5",
     "vite-tsconfig-paths": "^4.3.1",
-    "vitest": "^2.0.0"
+    "vitest": "^4.1.9"
   },
   "biome": {
     "linter": {
