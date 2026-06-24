@@ -1,14 +1,17 @@
-import os
 import json
-from fastapi import APIRouter, HTTPException
-from app import schemas
-from openai import OpenAI
-from google import genai
+import os
+
 from dotenv import load_dotenv
+from fastapi import APIRouter
+from google import genai
+from openai import OpenAI
+
+from app import schemas
 
 load_dotenv()
 
 router = APIRouter()
+
 
 def get_openai_client():
     api_key = os.getenv("OPENAI_API_KEY")
@@ -16,11 +19,13 @@ def get_openai_client():
         return None
     return OpenAI(api_key=api_key)
 
+
 def get_gemini_client():
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key or api_key == "your_api_key_here":
         return None
     return genai.Client(api_key=api_key)
+
 
 @router.post("/", response_model=schemas.AIAnalysisResponse)
 def analyze_failure(request: schemas.AIAnalysisRequest):
@@ -30,17 +35,17 @@ def analyze_failure(request: schemas.AIAnalysisRequest):
             "Product-Market Fit": 40,
             "Funding": 30,
             "Marketing": 20,
-            "Team": 10
+            "Team": 10,
         },
         "risk_score": 7.5,
         "recommendations": [
             "Validate demand before scaling",
             "Focus on customer retention",
-            "Ensure team alignment on vision"
+            "Ensure team alignment on vision",
         ],
         "market_sentiment": "High saturation with diminishing marginal returns on user acquisition.",
         "competitor_dynamics": "Aggressive incumbent behavior coupled with low differentiation.",
-        "forensic_summary": "The venture failed due to a lack of fundamental unit economics and premature scaling in a crowded vertical."
+        "forensic_summary": "The venture failed due to a lack of fundamental unit economics and premature scaling in a crowded vertical.",
     }
 
     prompt = f"""
@@ -63,9 +68,7 @@ def analyze_failure(request: schemas.AIAnalysisRequest):
             response = client.models.generate_content(
                 model="gemini-1.5-flash",
                 contents=prompt,
-                config={
-                    'response_mime_type': 'application/json'
-                }
+                config={"response_mime_type": "application/json"},
             )
             return json.loads(response.text)
         except Exception as e:
@@ -79,10 +82,13 @@ def analyze_failure(request: schemas.AIAnalysisRequest):
             response = client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": "You are a professional business failure analyst."},
-                    {"role": "user", "content": prompt}
+                    {
+                        "role": "system",
+                        "content": "You are a professional business failure analyst.",
+                    },
+                    {"role": "user", "content": prompt},
                 ],
-                response_format={ "type": "json_object" }
+                response_format={"type": "json_object"},
             )
             return json.loads(response.choices[0].message.content)
         except Exception as e:

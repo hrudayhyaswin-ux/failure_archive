@@ -1,6 +1,13 @@
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import failures, submissions, analysis
+
+from .routers import analysis, failures, submissions
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 import logging
 
@@ -10,11 +17,13 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Failure Archive API")
 
+
 @app.on_event("startup")
 def startup_event():
     # Create database tables on startup
     try:
-        from .database import engine, Base
+        from .database import Base, engine
+
         Base.metadata.create_all(bind=engine)
         logger.info("Database initialized successfully")
     except Exception as e:
@@ -32,6 +41,7 @@ app.add_middleware(
 app.include_router(failures.router, prefix="/api/failures", tags=["failures"])
 app.include_router(submissions.router, prefix="/api/submissions", tags=["submissions"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
+
 
 @app.get("/")
 def read_root():
