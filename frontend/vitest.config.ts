@@ -24,6 +24,6 @@ export default defineConfig({
         "**/*.config.mjs",
       ],
     },
-    include: ["src/**/*.test.{ts,tsx}", "frontend/src/**/*.test.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}"],
   },
 });

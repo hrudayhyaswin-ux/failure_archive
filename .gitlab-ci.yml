@@ -19,8 +19,8 @@ cache:
   paths:
     - .cache/pip
     - .npm
-    - node_modules
-    - venv
+    - frontend/node_modules
+    - backend/venv
 
 # --- Security Stage ---
 
@@ -37,6 +37,7 @@ dependency_audit_frontend:
   stage: security
   image: node:20-slim
   script:
+    - cd frontend
     - npm audit --audit-level=high
 
 dependency_audit_backend:
@@ -59,8 +60,9 @@ frontend_format:
   stage: format
   image: node:20-slim
   script:
+    - cd frontend
     - npm ci
-    - npx prettier --check src package.json next.config.ts vitest.config.ts postcss.config.mjs eslint.config.mjs
+    - npx prettier --check src messages package.json next.config.ts vitest.config.ts postcss.config.mjs eslint.config.mjs
 
 # --- Type Check Stage ---
 
@@ -75,6 +77,7 @@ frontend_type_check:
   stage: type_check
   image: node:20-slim
   script:
+    - cd frontend
     - npm ci
     - npm run type-check
 
@@ -99,12 +102,13 @@ bandit:
   image: python:3.11-slim
   script:
     - pip install bandit
-    - bandit -c pyproject.toml -r backend/app
+    - bandit -c backend/pyproject.toml -r backend/app
 
 frontend_lint:
   stage: lint
   image: node:20-slim
   script:
+    - cd frontend
     - npm ci
     - npm run lint
     - npm run oxlint
@@ -116,12 +120,14 @@ backend_test:
   image: python:3.11-slim
   script:
     - pip install -r backend/requirements.txt
-    - pytest backend/tests
+    - cd backend
+    - pytest tests
 
 frontend_test:
   stage: test
   image: node:20-slim
   script:
+    - cd frontend
     - npm ci
     - npm test
 
@@ -131,23 +137,25 @@ backend_coverage:
   stage: coverage
   image: python:3.11-slim
   script:
-    - pip install -r backend/requirements.txt
-    - pytest --cov=backend/app --cov-report=xml --cov-report=term
+    - pip install -r backend/requirements.txt pytest-cov
+    - cd backend
+    - pytest --cov=app --cov-report=xml --cov-report=term
   artifacts:
     reports:
       coverage_report:
         coverage_format: cobertura
-        path: coverage.xml
+        path: backend/coverage.xml
 
 frontend_coverage:
   stage: coverage
   image: node:20-slim
   script:
+    - cd frontend
     - npm ci
     - npm run test -- --coverage
   artifacts:
     paths:
-      - coverage/
+      - frontend/coverage/
 
 # --- Release Stage ---
 

@@ -1,18 +1,24 @@
-.PHONY: format type_check type-check coverage check
+.PHONY: format type_check type-check coverage check dev-frontend dev-backend
 
 format:
-	npm run format
+	cd frontend && npm run format
 	cd backend && ruff format .
 
 type_check:
-	npm run type_check
+	cd frontend && npm run type_check
 
 type-check:
-	npm run type-check
+	cd frontend && npm run type-check
 
 coverage:
-	npm run coverage
+	cd frontend && npm run coverage
 
 check:
-	npm run check
+	cd frontend && npm run check
 	cd backend && pytest --cov=app
+
+dev-frontend:
+	cd frontend && npm run dev
+
+dev-backend:
+	cd backend && uvicorn app.main:app --reload
