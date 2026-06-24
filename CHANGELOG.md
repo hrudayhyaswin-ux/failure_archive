@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-06-09
 
 ### Added
+
 - Initial project structure with Next.js frontend and FastAPI backend.
 - Intelligence Analyzer HUD for deep forensic analysis.
 - Case Archive Exploration with search capabilities.
@@ -16,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Backend test suite with pytest.
 
 ### Fixed
+
 - Critical page scrolling issue caused by scanline utility overflow.
 - Improved backend error handling with proper logging.
 - Refined frontend metadata for better SEO.

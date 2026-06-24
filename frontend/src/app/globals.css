@@ -103,11 +103,19 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to bottom right, oklch(0.55 0.25 275), oklch(0.75 0.2 300));
+  background-image: linear-gradient(
+    to bottom right,
+    oklch(0.55 0.25 275),
+    oklch(0.75 0.2 300)
+  );
 }
 
 @utility grid-pattern {
-  background-image: radial-gradient(circle at 1px 1px, oklch(0.55 0.25 275 / 0.05) 1px, transparent 0);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    oklch(0.55 0.25 275 / 0.05) 1px,
+    transparent 0
+  );
   background-size: 40px 40px;
 }
 
@@ -140,7 +148,12 @@
     content: "";
     position: absolute;
     inset: -2px;
-    background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+    background: linear-gradient(
+      45deg,
+      var(--primary),
+      var(--accent),
+      var(--primary)
+    );
     background-size: 200% 200%;
     z-index: -1;
     filter: blur(8px);
@@ -184,21 +197,37 @@
 
 @layer utilities {
   @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
   @keyframes spin-reverse {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
   }
   .animate-spin-reverse {
     animation: spin-reverse 3s linear infinite;
   }
   @keyframes progress-linear {
-    0% { transform: translateX(-100%); }
-    50% { transform: translateX(0); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
   .animate-progress-linear {
     animation: progress-linear 2s ease-in-out infinite;
@@ -212,7 +241,9 @@
   body {
     @apply bg-background text-foreground grid-pattern scanline;
   }
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     @apply font-serif;
   }
 }

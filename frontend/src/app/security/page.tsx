@@ -20,14 +20,20 @@ export default function SecurityPage() {
                 <Lock className="h-4 w-4 text-primary" />
                 <span>Encryption</span>
               </div>
-              <p className="text-sm text-muted-foreground">All data in transit is encrypted using TLS 1.3 with AES-256-GCM protocols.</p>
+              <p className="text-sm text-muted-foreground">
+                All data in transit is encrypted using TLS 1.3 with AES-256-GCM
+                protocols.
+              </p>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-foreground font-bold">
                 <Eye className="h-4 w-4 text-primary" />
                 <span>Neural Isolation</span>
               </div>
-              <p className="text-sm text-muted-foreground">AI processing occurs in isolated sandboxes to prevent cross-leakage of forensic data.</p>
+              <p className="text-sm text-muted-foreground">
+                AI processing occurs in isolated sandboxes to prevent
+                cross-leakage of forensic data.
+              </p>
             </div>
           </div>
         </CardContent>

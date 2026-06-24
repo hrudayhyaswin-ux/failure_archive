@@ -27,8 +27,12 @@ export default function Navbar() {
               <Brain className="h-5 w-5 text-primary" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-black tracking-[0.3em] uppercase text-foreground">Failure Archive</span>
-              <span className="text-[8px] font-bold tracking-[0.1em] uppercase text-primary/60">Intelligence Suite</span>
+              <span className="text-xs font-black tracking-[0.3em] uppercase text-foreground">
+                Failure Archive
+              </span>
+              <span className="text-[8px] font-bold tracking-[0.1em] uppercase text-primary/60">
+                Intelligence Suite
+              </span>
             </div>
           </Link>
           <div className="hidden md:flex gap-10">
@@ -38,9 +42,9 @@ export default function Navbar() {
                 href={item.href}
                 className={cn(
                   "text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:text-primary relative py-2",
-                  pathname === item.href 
-                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary after:rounded-full" 
-                    : "text-muted-foreground/60"
+                  pathname === item.href
+                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary after:rounded-full"
+                    : "text-muted-foreground/60",
                 )}
               >
                 {item.name}
@@ -49,10 +53,19 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <Button variant="ghost" size="sm" className="text-[10px] uppercase font-black tracking-widest hover:bg-primary/5 rounded-full px-6" asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-[10px] uppercase font-black tracking-widest hover:bg-primary/5 rounded-full px-6"
+            asChild
+          >
             <Link href="/login">Access System</Link>
           </Button>
-          <Button size="sm" className="h-11 px-8 rounded-full bg-primary text-primary-foreground text-[10px] uppercase font-black tracking-widest hover:bg-primary/90 shadow-lg shadow-primary/20 border-none" asChild>
+          <Button
+            size="sm"
+            className="h-11 px-8 rounded-full bg-primary text-primary-foreground text-[10px] uppercase font-black tracking-widest hover:bg-primary/90 shadow-lg shadow-primary/20 border-none"
+            asChild
+          >
             <Link href="/login">Initialize</Link>
           </Button>
         </div>
@@ -60,4 +73,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

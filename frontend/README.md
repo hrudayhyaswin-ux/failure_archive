@@ -14,10 +14,10 @@ Thousands of platforms document success stories, but very few systematically ana
 
 As a result:
 
-* People repeat the same mistakes.
-* Entrepreneurs launch products without learning from previous failures.
-* Students and professionals struggle to identify the root causes of their setbacks.
-* Organizations lose valuable lessons from failed projects.
+- People repeat the same mistakes.
+- Entrepreneurs launch products without learning from previous failures.
+- Students and professionals struggle to identify the root causes of their setbacks.
+- Organizations lose valuable lessons from failed projects.
 
 Failure Archive addresses this problem by creating a searchable database of failures combined with AI-driven analysis and recommendations.
 
@@ -29,22 +29,22 @@ Failure Archive addresses this problem by creating a searchable database of fail
 
 Explore documented failures across multiple domains:
 
-* Startups
-* Products
-* Businesses
-* Technologies
-* Policies
-* Careers
-* Investments
+- Startups
+- Products
+- Businesses
+- Technologies
+- Policies
+- Careers
+- Investments
 
 ### AI Failure Analyzer
 
 Users can submit descriptions of failed projects, businesses, or personal experiences and receive:
 
-* Root cause analysis
-* Risk assessment
-* Key failure factors
-* Improvement suggestions
+- Root cause analysis
+- Risk assessment
+- Key failure factors
+- Improvement suggestions
 
 ### Similar Failure Detection
 
@@ -54,11 +54,11 @@ The platform identifies failures with similar characteristics and presents patte
 
 Every failure includes:
 
-* Root causes
-* Warning signs
-* Timeline of events
-* Lessons learned
-* Recommendations
+- Root causes
+- Warning signs
+- Timeline of events
+- Lessons learned
+- Recommendations
 
 ### Community Contributions
 
@@ -68,10 +68,10 @@ Users can contribute failure stories and insights to expand the archive.
 
 Visualize:
 
-* Most common failure reasons
-* Industry-wise failure trends
-* Failure category statistics
-* User submissions
+- Most common failure reasons
+- Industry-wise failure trends
+- Failure category statistics
+- User submissions
 
 ---
 
@@ -93,31 +93,31 @@ Analytics & Reporting
 
 ### Frontend
 
-* Next.js
-* TypeScript
-* Tailwind CSS
-* ShadCN UI
-* Recharts
+- Next.js
+- TypeScript
+- Tailwind CSS
+- ShadCN UI
+- Recharts
 
 ### Backend
 
-* FastAPI
-* SQLAlchemy
-* JWT Authentication
+- FastAPI
+- SQLAlchemy
+- JWT Authentication
 
 ### Database
 
-* PostgreSQL
+- PostgreSQL
 
 ### AI Integration
 
-* OpenAI API
+- OpenAI API
 
 ### Deployment
 
-* Vercel (Frontend)
-* Railway / Render (Backend)
-* Supabase PostgreSQL
+- Vercel (Frontend)
+- Railway / Render (Backend)
+- Supabase PostgreSQL
 
 ---
 
@@ -125,36 +125,36 @@ Analytics & Reporting
 
 ### Authentication Module
 
-* User Registration
-* Login
-* JWT Authentication
-* Role-Based Access Control
+- User Registration
+- Login
+- JWT Authentication
+- Role-Based Access Control
 
 ### Failure Management Module
 
-* Add Failure
-* Edit Failure
-* Delete Failure
-* View Failure Details
+- Add Failure
+- Edit Failure
+- Delete Failure
+- View Failure Details
 
 ### AI Analysis Module
 
-* Root Cause Detection
-* Failure Categorization
-* Recommendation Generation
+- Root Cause Detection
+- Failure Categorization
+- Recommendation Generation
 
 ### Search & Filter Module
 
-* Search by Title
-* Search by Category
-* Search by Industry
-* Search by Keywords
+- Search by Title
+- Search by Category
+- Search by Industry
+- Search by Keywords
 
 ### Dashboard Module
 
-* Statistics
-* Charts
-* Reports
+- Statistics
+- Charts
+- Reports
 
 ---
 
@@ -206,23 +206,23 @@ Analytics & Reporting
 
 ## Future Enhancements
 
-* AI Failure Prediction Engine
-* Failure Similarity Graphs
-* Startup Risk Calculator
-* Business Plan Analyzer
-* Career Failure Assessment
-* Recommendation Engine
-* Public API Access
+- AI Failure Prediction Engine
+- Failure Similarity Graphs
+- Startup Risk Calculator
+- Business Plan Analyzer
+- Career Failure Assessment
+- Recommendation Engine
+- Public API Access
 
 ---
 
 ## Project Goals
 
-* Create awareness about learning from failures.
-* Help users make informed decisions.
-* Build a structured repository of failure knowledge.
-* Encourage data-driven problem solving.
-* Promote continuous learning and improvement.
+- Create awareness about learning from failures.
+- Help users make informed decisions.
+- Build a structured repository of failure knowledge.
+- Encourage data-driven problem solving.
+- Promote continuous learning and improvement.
 
 ---
 
@@ -230,11 +230,11 @@ Analytics & Reporting
 
 Users will be able to:
 
-* Analyze real-world failures.
-* Understand root causes.
-* Learn valuable lessons.
-* Avoid repeating common mistakes.
-* Improve decision-making skills.
+- Analyze real-world failures.
+- Understand root causes.
+- Learn valuable lessons.
+- Avoid repeating common mistakes.
+- Improve decision-making skills.
 
 ---
 

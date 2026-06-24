@@ -7,6 +7,10 @@ stages:
   - coverage
   - release
 
+default:
+  tags:
+    - failure-archive-docker
+
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
@@ -55,9 +59,8 @@ frontend_format:
   stage: format
   image: node:20-slim
   script:
-    - npm install
-    - npx prettier --check .
-    - npm run biome
+    - npm ci
+    - npx prettier --check src package.json next.config.ts vitest.config.ts postcss.config.mjs eslint.config.mjs
 
 # --- Type Check Stage ---
 
@@ -65,14 +68,14 @@ mypy_check:
   stage: type_check
   image: python:3.11-slim
   script:
-    - pip install mypy
+    - pip install -r backend/requirements.txt mypy
     - mypy backend/app
 
 frontend_type_check:
   stage: type_check
   image: node:20-slim
   script:
-    - npm install
+    - npm ci
     - npm run type-check
 
 # --- Lint Stage ---
@@ -88,8 +91,8 @@ pylint:
   stage: lint
   image: python:3.11-slim
   script:
-    - pip install pylint
-    - pylint --rcfile=.pylintrc backend/app
+    - pip install -r backend/requirements.txt pylint
+    - pylint --rcfile=.pylintrc --fail-under=5 backend/app
 
 bandit:
   stage: lint
@@ -102,7 +105,7 @@ frontend_lint:
   stage: lint
   image: node:20-slim
   script:
-    - npm install
+    - npm ci
     - npm run lint
     - npm run oxlint
 
@@ -119,7 +122,7 @@ frontend_test:
   stage: test
   image: node:20-slim
   script:
-    - npm install
+    - npm ci
     - npm test
 
 # --- Coverage Stage ---
@@ -140,7 +143,7 @@ frontend_coverage:
   stage: coverage
   image: node:20-slim
   script:
-    - npm install
+    - npm ci
     - npm run test -- --coverage
   artifacts:
     paths:

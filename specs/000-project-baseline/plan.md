@@ -5,9 +5,11 @@
 **Input**: Feature specification from `specs/000-project-baseline/spec.md`
 
 ## Summary
+
 Implementation of a full-stack intelligence repository for business failures. The system features a searchable frontend built with Next.js and a neural forensic engine backend built with FastAPI. The architecture emphasizes high visual fidelity and decoupled services.
 
 ## Technical Context
+
 **Language/Version**: TypeScript (Frontend), Python 3.13 (Backend)
 
 **Primary Dependencies**: Next.js 15+, Tailwind CSS v4, FastAPI, SQLAlchemy, Lucide React
@@ -25,6 +27,7 @@ Implementation of a full-stack intelligence repository for business failures. Th
 **Constraints**: Dark-mode only, neural/cyberpunk design system, decoupled API communication.
 
 ## Constitution Check
+
 - **I. SDD Adherence**: ✅ Spec and Plan established in `specs/000-project-baseline/`.
 - **II. Neural Aesthetic**: ✅ Design utilizes `glass` and `neural-pulse` utilities in `globals.css`.
 - **III. Decoupled Architecture**: ✅ Frontend communicates with backend via `NEXT_PUBLIC_API_URL`.
@@ -34,6 +37,7 @@ Implementation of a full-stack intelligence repository for business failures. Th
 ## Project Structure
 
 ### Source Code
+
 ```text
 frontend/
 ├── src/
@@ -55,5 +59,6 @@ backend/
 **Structure Decision**: Using a monorepo-style split between `frontend/` and `backend/` for clear service separation and independent deployment.
 
 ## Next Steps
+
 1.  **Generate Tasks**: Run `/speckit.tasks` to break down remaining polish and test coverage.
 2.  **Implementation**: Focus on increasing test coverage for the forensic engine and optimizing search latency.

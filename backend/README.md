@@ -13,6 +13,7 @@ pinned: false
 AI-powered platform to analyze business and startup failures.
 
 ## Tech Stack
+
 - FastAPI
 - SQLAlchemy
 - OpenAI API
