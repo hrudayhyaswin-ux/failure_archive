@@ -1,63 +1,62 @@
-# Environments
+# ─── Environment Variables ────────────────────────────────────────────────────
 .env
 .env.*
 !.env.example
+
+# ─── OS Files ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Python ───────────────────────────────────────────────────────────────────
 venv/
 env/
+backend/venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# Databases
-*.db
-*.sqlite
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Frontend build & dependencies
-node_modules/
-.next/
-next-env.d.ts
-dev-server*.log
-out/
-build/
-.vercel/
-
-# Python cache & type checking
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
-__pycache__/
-*.pyc
+*.egg-info/
 
-# Coverage reports & artifacts
+# ─── Databases ────────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+
+# ─── Coverage & Test Artifacts ────────────────────────────────────────────────
 htmlcov/
 coverage/
 coverage.xml
 .coverage
 *.cover
+.nyc_output/
 
-# TypeScript build cache
+# ─── Frontend Build & Dependencies ────────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/next-env.d.ts
+.next/
+out/
+build/
+.vercel/
+dev-server*.log
+
+# ─── TypeScript Build Cache ───────────────────────────────────────────────────
 tsconfig.tsbuildinfo
 *.tsbuildinfo
 
-# Test databases
-test.db
-
-# Binary / media files (not code)
+# ─── Binary / Office Files ────────────────────────────────────────────────────
 *.pptx
 *.ppt
 *.xlsx
 *.xls
 
-# Duplicate / nested project directories
-frontend/frontend/
-
-# Husky auto-generated internals
+# ─── Husky Auto-generated Internals ──────────────────────────────────────────
 .husky/_/
 
-# Editor / tool caches
-.ruff_cache/
+# ─── Duplicate / Nested Directories (Safety) ─────────────────────────────────
+frontend/frontend/
