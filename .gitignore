@@ -17,7 +17,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Frontend (if not handled by frontend/.gitignore)
+# Frontend build & dependencies
 node_modules/
 .next/
 next-env.d.ts
@@ -25,3 +25,39 @@ dev-server*.log
 out/
 build/
 .vercel/
+
+# Python cache & type checking
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+
+# Coverage reports & artifacts
+htmlcov/
+coverage/
+coverage.xml
+.coverage
+*.cover
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Test databases
+test.db
+
+# Binary / media files (not code)
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+
+# Duplicate / nested project directories
+frontend/frontend/
+
+# Husky auto-generated internals
+.husky/_/
+
+# Editor / tool caches
+.ruff_cache/
