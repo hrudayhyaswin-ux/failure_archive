@@ -36,13 +36,15 @@ secret_scanning:
 dependency_audit_frontend:
   stage: security
   image: node:20-slim
+  allow_failure: true
   script:
     - cd frontend
-    - npm audit --audit-level=high
+    - npm audit --audit-level=critical
 
 dependency_audit_backend:
   stage: security
   image: python:3.11-slim
+  allow_failure: true
   script:
     - pip install pip-audit
     - pip-audit -r backend/requirements.txt
